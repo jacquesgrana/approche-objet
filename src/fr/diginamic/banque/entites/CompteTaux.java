@@ -4,7 +4,7 @@ public class CompteTaux extends Compte{
 
 	private float tauxRemun;
 
-	public CompteTaux(int numeroCompte, float soldeCompte, float tauxRemun) {
+	public CompteTaux(String numeroCompte, float soldeCompte, float tauxRemun) {
 		super(numeroCompte, soldeCompte);
 		this.tauxRemun = tauxRemun;
 	}
