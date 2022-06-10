@@ -9,9 +9,13 @@ public class TestPersonne {
 		AdressePostale adress2 = new AdressePostale(15, "rue des oiseaux", 75000, "Paris");
 		
 		Personne pers1 = new Personne("Martin", "Martine");
-		pers1.adresse = adress1;
+		//pers1.adresse = adress1;
+		pers1.setAdresse(adress1);
+		pers1.afficheNomPrenom();
+		System.out.println();
 		
 		Personne pers2 = new Personne("Dupond", "Charles", adress2);
+		pers2.afficheNomPrenom();
 	}
 
 }
