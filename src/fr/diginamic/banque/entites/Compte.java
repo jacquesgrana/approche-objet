@@ -10,7 +10,7 @@ public class Compte {
 	}
 
 	public String getNumeroCompte() {
-		return numeroCompte;
+		return this.numeroCompte;
 	}
 
 	public void setNumeroCompte(String numeroCompte) {
@@ -18,7 +18,7 @@ public class Compte {
 	}
 
 	public float getSoldeCompte() {
-		return soldeCompte;
+		return this.soldeCompte;
 	}
 
 	public void setSoldeCompte(float soldeCompte) {
@@ -27,7 +27,7 @@ public class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte [numeroCompte=" + numeroCompte + ", soldeCompte=" + soldeCompte + "]";
+		return "Compte [numeroCompte=" + this.numeroCompte + ", soldeCompte=" + this.soldeCompte + "]";
 	}
 	
 	
