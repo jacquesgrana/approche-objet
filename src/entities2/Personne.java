@@ -36,7 +36,7 @@ public class Personne {
 	}
 
 	public AdressePostale getAdresse() {
-		return adresse;
+		return this.adresse;
 	}
 
 	public void setAdresse(AdressePostale adresse) {
