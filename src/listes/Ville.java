@@ -9,6 +9,10 @@ public class Ville {
 		this.nom = nom;
 		this.nombreHab = nombreHab;
 	}
+	
+	public Ville clone() {
+		return new Ville(this.nom, this.nombreHab);
+	}
 
 	public String getNom() {
 		return nom;

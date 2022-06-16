@@ -27,7 +27,7 @@ public class TestVille {
 		for (Ville elem : listVille) {
 			if (elem.getNombreHab() > max) {
 				max = elem.getNombreHab();
-				villeMax = elem; // cloner?
+				villeMax = elem.clone();
 			}
 		}
 		
@@ -38,7 +38,7 @@ public class TestVille {
 		for (Ville elem : listVille) {
 			if (elem.getNombreHab() < min) {
 				min = elem.getNombreHab();
-				villeMin = elem; // cloner?
+				villeMin = elem;
 			}
 		}
 		listVille.remove(villeMin);
