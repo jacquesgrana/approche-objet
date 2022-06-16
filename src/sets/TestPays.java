@@ -28,7 +28,7 @@ public class TestPays {
 		for (Pays element : hashSetPays) {
 			if (element.getPibParHab() > maxPibHab) {
 				maxPibHab = element.getPibParHab();
-				paysPibHabMax = element;
+				paysPibHabMax = element.clone();
 			}
 			
 		}
@@ -41,7 +41,7 @@ public class TestPays {
 		for (Pays element : hashSetPays) {
 			if (element.getPib() > maxPib) {
 				maxPib = element.getPib();
-				paysPibMax = element;
+				paysPibMax = element.clone();
 			}
 		}
 		System.out.println("\n\nPays dont le pib est le plus grand : " + paysPibMax.toString());
@@ -61,6 +61,8 @@ public class TestPays {
 		hashSetPays.remove(paysPibMin);
 		paysPibMin.setNom(paysPibMin.getNom().toUpperCase());
 		hashSetPays.add(paysPibMin);
+		
+		System.out.println("\n\nPays dont le pib est le plus petit : " + paysPibMin.toString());
 		
 		System.out.println("\n\nSet après modification Majuscules : \n");
 		for (Pays element : hashSetPays) {

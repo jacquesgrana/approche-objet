@@ -12,7 +12,9 @@ public class Pays {
 		this.pibParHab = pibParHab;
 	}
 	
-	
+	public Pays clone() {
+		return new Pays(this.nom, this.nombreHab, this.pibParHab);
+	}
 	
 	public double getPib() {
 		return this.pibParHab * this.nombreHab;
