@@ -52,16 +52,6 @@ public class TestListeInt {
 			System.out.println(element);
 		}
 		
-		//Iterator iter = listInteger.iterator();
-		/*
-		while(iter.hasNext()) {
-			int value = (int) iter.next();
-			if (value < 0) {
-				listInteger.set(indexMin, null);
-			}
-		}
-		*/
-		
 		for (int i=0; i<listInteger.size(); i++) {
 			if (listInteger.get(i) < 0) {
 				listInteger.set(i, -1*listInteger.get(i));
