@@ -15,6 +15,8 @@ public class CreationMap {
 		mapSalaires.put("Ingrid", 2015d);
 		mapSalaires.put("Chantal", 2418d);
 		
+		System.out.println("Taille de la map : " + mapSalaires.size());
+		/*
 		System.out.println("\nListe initiale :\n");
 		Iterator<Double> iter = mapSalaires.values().iterator();
 		while (iter.hasNext()) {
@@ -29,7 +31,7 @@ public class CreationMap {
 		
 		for (String valString : mapSalaires.keySet()) {
 			
-		}
+		}*/
 	}
 
 }
