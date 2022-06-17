@@ -27,7 +27,7 @@ public class LectureFichier {
 			
 			
 			//System.out.println("nom : " + tabOneLine[6] + " dep : " + tabOneLine[2] + " reg : " + tabOneLine[1] + " pop : " + tabOneLine[9].replace(" ", ""));
-			Ville ville = new Ville(tabOneLine[6], tabOneLine[2], tabOneLine[1], Integer.parseInt(tabOneLine[9].replace(" ", "")));
+			Ville ville = new Ville(tabOneLine[6], tabOneLine[2], tabOneLine[1], Integer.parseInt(tabOneLine[9].trim().replaceAll(" ", "")));
 			listeVilles.add(ville);
 			//System.out.println(ville.toString());
 		}
