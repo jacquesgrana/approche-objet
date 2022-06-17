@@ -23,7 +23,19 @@ public class RunTriExo1 {
 		}
 		
 		Collections.sort(listVille);
-		System.out.println("\n\nAprès tri alpha :\n");
+		System.out.println("\n\nAprès tri avec 'Comparable' :\n");
+		for (Ville element : listVille) {
+			System.out.println(element.toString());
+		}
+		
+		Collections.sort(listVille, new ComparatorNom());
+		System.out.println("\n\nAprès tri avec 'Comparator' sur les noms :\n");
+		for (Ville element : listVille) {
+			System.out.println(element.toString());
+		}
+		
+		Collections.sort(listVille, new ComparatorHabitant());
+		System.out.println("\n\nAprès tri avec 'Comparator' sur les nombres d'habitants :\n");
 		for (Ville element : listVille) {
 			System.out.println(element.toString());
 		}
