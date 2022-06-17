@@ -1,4 +1,4 @@
-package listes;
+package maps;
 
 public class Ville {
 	private String nom;
@@ -29,5 +29,12 @@ public class Ville {
 	public void setNombreHab(long nombreHab) {
 		this.nombreHab = nombreHab;
 	}
+
+	@Override
+	public String toString() {
+		return "nom : " + nom + ", nombreHab : " + nombreHab;
+	}
+	
+	
 
 }
