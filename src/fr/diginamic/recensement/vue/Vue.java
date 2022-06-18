@@ -1,7 +1,11 @@
 package fr.diginamic.recensement.vue;
 
+/**
+ * Classe chargée des affichages de l'application
+ * 
+ * @author jacques granarolo
+ */
 public class Vue {
-
 
 	public void displayGeneralMenu(boolean isFileLoaded) {
 		System.out.println("\n\n\n\n");
@@ -13,7 +17,8 @@ public class Vue {
 		System.out.println("  *                                           *");
 		if (!isFileLoaded) {
 			System.out.println("  * 0 : Initialisation des données            *");
-		} else {
+		} 
+		else {
 
 			System.out.println("  * 1 : Population d'une ville                *");
 			System.out.println("  * 2 : Population d'un département           *");
@@ -30,7 +35,25 @@ public class Vue {
 		System.out.println("  * Q : quitter l'application                 *");
 		System.out.println("  *                                           *");
 		System.out.println("  *********************************************");
-		System.out.println("\n\n  Saisir votre choix et validez :");
+		System.out.println("\n  Saisir votre choix et validez :");
+	}
+
+	public void displayLoadDataMenu() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  *********************************************");
+		System.out.println("  *                                           *");
+		System.out.println("  * Recensement                               *");
+		System.out.println("  *                                           *");
+		System.out.println("  * Chargement des données depuis             *");
+		System.out.println("  * le fichier .csv                           *");
+		System.out.println("  *                                           *");
+		System.out.println("  *********************************************");
+		
+	}
+
+	public void displayContinue() {
+		System.out.println("\n  'C' pour continuer :");
+		
 	}
 
 }

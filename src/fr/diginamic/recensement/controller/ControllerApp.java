@@ -3,6 +3,14 @@ package fr.diginamic.recensement.controller;
 import fr.diginamic.recensement.model.Model;
 import fr.diginamic.recensement.vue.Vue;
 
+/**
+ * Classe controlleur de l'application, utilise model et vue
+ * 
+ * @see Model
+ * @see Vue
+ * @see Ville
+ * @author jacques granarolo
+ */
 public class ControllerApp {
 	
 	private Model model;
@@ -16,8 +24,6 @@ public class ControllerApp {
 		//System.out.println("init Controller");
 		this.model = new Model();
 		this.vue = new Vue();
-		//this.model.getScanner() = new Scanner(System.in);
-		//Scanner scan = new Scanner(System.in);
 	}
 	
 	public void run() {
@@ -33,10 +39,28 @@ public class ControllerApp {
 			case 'Q', 'q' :
 				quit = true;
 				break;
+			case '0' :
+				if (!model.getIsFileLoaded()) {
+					loadDatasFromCSV();
+				}
+				break;
 			}
 		}
 		while (!quit);
 		System.out.println("\n\nFin du programme");
+	}
+
+	private void loadDatasFromCSV() {
+		this.vue.displayLoadDataMenu();
+		this.model.loadDatasFromFile();
+		char choice = 'X';
+		do {
+			this.vue.displayContinue();
+			String choiceString = this.model.getScanner().next();
+			choice = choiceString.charAt(0);
+		}
+		while (choice != 'C' && choice != 'c');
+		this.model.setIsFileLoaded(true);
 	}
 	
 	
