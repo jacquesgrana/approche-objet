@@ -56,17 +56,35 @@ public class Vue {
 		System.out.println("  * le fichier .csv                           *");
 		System.out.println("  *                                           *");
 		System.out.println("  *********************************************");
-		
+	}
+	
+	public void displayMenu01() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  *********************************************");
+		System.out.println("  *                                           *");
+		System.out.println("  * Recensement                               *");
+		System.out.println("  *                                           *");
+		System.out.println("  * Saisissez le nom d'une ville :            *");
+		System.out.println("  *                                           *");
+		System.out.println("  *********************************************");
 	}
 
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
-		
 	}
 
 	public void displayInfosDatas(ArrayList<Ville> listVilles) {
 		System.out.println("\n  Nombre de villes dans la liste : " + listVilles.size());
 		
+	}
+
+	public void displayVilleNotFound(String nom) {
+		System.out.println("\n  Pas de ville à ce nom : " + nom);
+		
+	}
+
+	public void displayVille(Ville ville) {
+		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale());
 	}
 
 }
