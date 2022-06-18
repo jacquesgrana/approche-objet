@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import fr.diginamic.recensement.model.ComparatorRegionByPop;
+import fr.diginamic.recensement.model.ComparatorDptByPopDecr;
+import fr.diginamic.recensement.model.ComparatorRegionByPopDecr;
 import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Model;
 import fr.diginamic.recensement.model.Region;
@@ -71,7 +72,12 @@ public class ControllerApp {
 				break;
 			case '4' :
 				if (model.getIsFileLoaded()) {
-					searchAndTopTenRegionPop(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
+					searchAndDisplayTopTenRegionPop(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
+				}
+				break;
+			case '5' :
+				if (model.getIsFileLoaded()) {
+					searchAndDisplayTopTenDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			}
@@ -81,7 +87,14 @@ public class ControllerApp {
 		System.out.println("\n\nFin du programme");
 	}
 
-	private void searchAndTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
+	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
+		char choice = 'X';
+		this.vue.displayMenu05();
+		generateTopTenDeptList(listVilles, listDpts);
+		waitForCToContinue(scanner);
+	}
+
+	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
 		char choice = 'X';
 		this.vue.displayMenu04();
 		generateTopTenRegionList(listVilles, listRegion);
@@ -161,6 +174,24 @@ public class ControllerApp {
 		return null;
 	}
 	
+	private void generateTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
+		for (Ville ville : listVilles) {
+			Departement deptToTest = new Departement(ville.getCodeDept(),0L);
+			for (Departement dept : listDpts) {
+				if (dept.equals(deptToTest)) {
+					dept.setPopulTotale(dept.getPopulTotale() + ville.getPopulTotale());
+				}
+				
+			}
+				
+		}
+		
+		ComparatorDptByPopDecr comparator = new ComparatorDptByPopDecr();
+		Collections.sort(listDpts, comparator);
+		this.vue.displayTopTenDeptByPop(listDpts);
+		
+	}
+	
 	private void generateTopTenRegionList(ArrayList<Ville> listVilles, ArrayList<Region> listRegion) {
 		// boucle sur ville
 		for (Ville ville : listVilles) {
@@ -179,7 +210,7 @@ public class ControllerApp {
 		}
 		
 		// tri region selon population : appel comparatorPop
-		ComparatorRegionByPop comparator = new ComparatorRegionByPop();
+		ComparatorRegionByPopDecr comparator = new ComparatorRegionByPopDecr();
 		Collections.sort(listRegion, comparator);
 		// appel fonction vue qui affiche les 10 1e elements de la liste (code : + nom : + pop :)
 		this.vue.displayTopTenRegionByPop(listRegion);
