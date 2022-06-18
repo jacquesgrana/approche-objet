@@ -1,5 +1,7 @@
 package fr.diginamic.recensement;
 
+import java.io.IOException;
+
 import fr.diginamic.recensement.controller.ControllerApp;
 
 public class Application {
@@ -10,8 +12,9 @@ public class Application {
 	 * 
 	 * @see ControllerApp
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		ControllerApp controller = new ControllerApp();
 		

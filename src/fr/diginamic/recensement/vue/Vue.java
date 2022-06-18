@@ -1,11 +1,19 @@
 package fr.diginamic.recensement.vue;
 
+import java.util.ArrayList;
+
+import fr.diginamic.recensement.model.Ville;
+
 /**
  * Classe chargée des affichages de l'application
  * 
  * @author jacques granarolo
  */
 public class Vue {
+	
+	public Vue() {
+		
+	}
 
 	public void displayGeneralMenu(boolean isFileLoaded) {
 		System.out.println("\n\n\n\n");
@@ -53,6 +61,11 @@ public class Vue {
 
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
+		
+	}
+
+	public void displayInfosDatas(ArrayList<Ville> listVilles) {
+		System.out.println("\n  Nombre de villes dans la liste : " + listVilles.size());
 		
 	}
 

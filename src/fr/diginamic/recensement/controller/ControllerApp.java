@@ -1,5 +1,7 @@
 package fr.diginamic.recensement.controller;
 
+import java.io.IOException;
+
 import fr.diginamic.recensement.model.Model;
 import fr.diginamic.recensement.vue.Vue;
 
@@ -26,7 +28,7 @@ public class ControllerApp {
 		this.vue = new Vue();
 	}
 	
-	public void run() {
+	public void run() throws IOException {
 		//System.out.println("run Controller");
 		boolean quit = false;
 		char choice = 'X';
@@ -47,12 +49,14 @@ public class ControllerApp {
 			}
 		}
 		while (!quit);
+		this.model.getScanner().close();
 		System.out.println("\n\nFin du programme");
 	}
 
-	private void loadDatasFromCSV() {
+	private void loadDatasFromCSV() throws IOException {
 		this.vue.displayLoadDataMenu();
-		this.model.loadDatasFromFile();
+		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
+		this.vue.displayInfosDatas(this.model.getListVilles());
 		char choice = 'X';
 		do {
 			this.vue.displayContinue();
@@ -60,7 +64,7 @@ public class ControllerApp {
 			choice = choiceString.charAt(0);
 		}
 		while (choice != 'C' && choice != 'c');
-		this.model.setIsFileLoaded(true);
+		
 	}
 	
 	
