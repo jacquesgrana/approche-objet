@@ -2,6 +2,7 @@ package fr.diginamic.recensement.vue;
 
 import java.util.ArrayList;
 
+import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Ville;
 
 /**
@@ -102,8 +103,8 @@ public class Vue {
 		System.out.println("\n  Pas de département avec ce code : " + codeDpt);
 	}
 
-	public void displayPopDept(String codeDpt, Long popDept) {
-		System.out.println("\n  Code du département : " + codeDpt + " / population : " + popDept);
+	public void displayPopDept(Departement dept) {
+		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale());
 	}
 
 

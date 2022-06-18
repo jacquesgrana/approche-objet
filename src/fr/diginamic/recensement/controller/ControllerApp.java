@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Model;
 import fr.diginamic.recensement.model.Ville;
 import fr.diginamic.recensement.vue.Vue;
@@ -46,7 +47,7 @@ public class ControllerApp {
 			break;
 			case '0' :
 				if (!model.getIsFileLoaded()) {
-					loadDatasFromCSV();
+					loadDatasFromCSV(this.model.getScanner());
 				}
 				break;
 			case '1' :
@@ -72,25 +73,19 @@ public class ControllerApp {
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
 		
-		Long popDept = calcPopDept(choiceString, listVilles);
+		// renvoyer un dept
+		Departement dept = calcPopDept(choiceString, listVilles);
+		Long popDept = dept.getPopulTotale();
 		if(popDept > 0) {
-			this.vue.displayPopDept(choiceString, popDept);
+			this.vue.displayPopDept(dept);
 		}
 		else {
 			this.vue.displayDeptNotFound(choiceString);
 		}
-
-		// attend 'c' pour retour au menu
-		do { // TODO factoriser
-			this.vue.displayContinue();
-			String choiceString2 = scanner.next();
-			choice = choiceString2.charAt(0);
-		}
-		while (choice != 'C' && choice != 'c');
-
+		waitForCToContinue(scanner);
 	}
 
-	// TODO probleme pour lyon --> modifier csv?
+	// TODO probleme pour lyon --> modifier csv? -- FAIT - fichier csv modifié
 	private void searchAndDisplayVille(ArrayList<Ville> listVilles, Scanner scanner) {
 		char choice = 'X';
 		this.vue.displayMenu01();
@@ -112,13 +107,7 @@ public class ControllerApp {
 
 		}
 
-		// attend 'c' pour retour au menu
-		do { // TODO factoriser
-			this.vue.displayContinue();
-			String choiceString2 = scanner.next();
-			choice = choiceString2.charAt(0);
-		}
-		while (choice != 'C' && choice != 'c');
+		waitForCToContinue(scanner);
 	}
 
 	private Ville searchVille(String nomVille, ArrayList<Ville> listVilles) {
@@ -134,34 +123,37 @@ public class ControllerApp {
 		return null;
 	}
 	
-	private Long calcPopDept(String codeDept, ArrayList<Ville> listVilles) {
+	private Departement calcPopDept(String codeDept, ArrayList<Ville> listVilles) {
 		Long popTotale = 0L;
+		Departement deptToReturn = new Departement(codeDept, 0L);
 		for (Ville ville : listVilles) {
 			if (ville.getCodeDept().toUpperCase().equals(codeDept)) {
 				popTotale += ville.getPopulTotale();
 			}
-			
 		}
-		
-		return popTotale;
+		deptToReturn.setPopulTotale(popTotale);
+		return deptToReturn;
 	}
 
-	private void loadDatasFromCSV() throws IOException {
+	private void loadDatasFromCSV(Scanner scanner) throws IOException {
 		this.vue.displayLoadDataMenu();
 		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
 		this.vue.displayInfosDatas(this.model.getListVilles());
 		char choice = 'X';
-		do { // TODO factoriser
-			this.vue.displayContinue();
-			String choiceString = this.model.getScanner().next();
-			choice = choiceString.charAt(0);
-		}
-		while (choice != 'C' && choice != 'c');
+		waitForCToContinue(scanner);
 
 	}
 
 
-
+	private void waitForCToContinue(Scanner scanner) {
+		char choice;
+		do {
+			this.vue.displayContinue();
+			String choiceString2 = scanner.next();
+			choice = choiceString2.charAt(0);
+		}
+		while (choice != 'C' && choice != 'c');
+	}
 
 
 	public Model getModel() {
