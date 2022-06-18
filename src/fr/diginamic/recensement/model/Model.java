@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,15 +20,62 @@ public class Model {
 	private Scanner scanner;
 	private boolean isFileLoaded;
 	private ArrayList<Ville> listVilles;
+	private ArrayList<Departement> listDpts;
+	private ArrayList<Region> listRegions;
 	
 	public Model() {
 		this.scanner = new Scanner(System.in);
 		this.isFileLoaded = false;
 		this.listVilles = new ArrayList<>();
+		this.listDpts = new ArrayList<>();
+		this.listRegions = new ArrayList<>();
 	}
 	
+	public void init() {
+		
+	}
+	
+	private void initListDpts() {
+		Departement firstDpt = new Departement(this.listVilles.get(0).getCodeDept(), 0L);
+		Departement deptToTest = null;
+		this.listDpts.add(firstDpt);
+		for (Ville ville : this.listVilles) {
+			deptToTest = new Departement(ville.getCodeDept(), 0L);		
+			if(!this.listDpts.contains(deptToTest)) {
+				this.listDpts.add(deptToTest);
+			}			
+		}
+		
+		/*
+		for (Departement dpt : this.listDpts) {
+			System.out.println(dpt.toString());
+		}*/
+		
+	}
+	
+	private void initListRegions() {
+		Region firstRegion = new Region(this.listVilles.get(0).getCodeRegion(), this.listVilles.get(0).getNomRegion(), 0L);
+		Region regionToTest = null;
+		this.listRegions.add(firstRegion);
+		for (Ville ville : this.listVilles) {
+			regionToTest = new Region(ville.getCodeRegion(), ville.getNomRegion(), 0L);
+			
+			//boolean codeRegionEquals = ville.getCodeRegion().
+			
+			if(!this.listRegions.contains(regionToTest)) {
+				this.listRegions.add(regionToTest);
+			}			
+		}
+		
+		/*
+		for (Region region : this.listRegions) {
+			System.out.println(region.toString());
+		}*/
+	}
+
 	/**
-	 * Vérifie l'existence du ficher, renvoie faux si fichier pas ok, sinon charge les données dans la liste et renvoie vrai
+	 * Vérifie l'existence du ficher, renvoie faux si fichier pas ok, sinon charge les données dans la liste inialise les liste des régions
+	 * et des départements, puis renvoie vrai
 	 * 
 	 * @return vrai si fichier ok et chargé, sinon faux
 	 * @throws IOException
@@ -53,6 +101,8 @@ public class Model {
 				this.listVilles.add(ville);
 				//System.out.println(ville.toString());
 			}
+			initListDpts();
+			initListRegions();
 			return true;
 		}
 	}

@@ -31,6 +31,7 @@ public class ControllerApp {
 		//System.out.println("init Controller");
 		this.model = new Model();
 		this.vue = new Vue();
+		this.model.init();
 	}
 
 	public void run() throws IOException {
