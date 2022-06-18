@@ -23,8 +23,8 @@ public class Region {
 		Region regionToTest = (Region) o;
 		boolean codeRegionEquals = regionToTest.getCodeRegion().equals(this.getCodeRegion());
 		boolean nomRegionEquals = regionToTest.getNomRegion().equals(this.getNomRegion());
-		boolean popRegionEquals = regionToTest.getPopulTotale() == this.getPopulTotale();
-		return (codeRegionEquals && nomRegionEquals && popRegionEquals);
+		//boolean popRegionEquals = regionToTest.getPopulTotale() == this.getPopulTotale();
+		return (codeRegionEquals && nomRegionEquals); // && popRegionEquals
 	}
 
 	public String getCodeRegion() {

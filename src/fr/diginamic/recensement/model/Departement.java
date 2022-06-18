@@ -19,8 +19,8 @@ public class Departement {
 	public boolean equals(Object o){
 		Departement dtpToTest = (Departement) o;
 		boolean codeDeptEquals = dtpToTest.codeDept.equals(this.codeDept);
-		boolean popDptEquals = dtpToTest.getPopulTotale() == this.getPopulTotale();
-		return (codeDeptEquals && popDptEquals);
+		//boolean popDptEquals = dtpToTest.getPopulTotale() == this.getPopulTotale();
+		return (codeDeptEquals); // && popDptEquals
 	}
 
 	public String getCodeDept() {

@@ -49,7 +49,8 @@ public class Model {
 		/*
 		for (Departement dpt : this.listDpts) {
 			System.out.println(dpt.toString());
-		}*/
+		}
+		System.out.println();*/
 		
 	}
 	
@@ -131,4 +132,19 @@ public class Model {
 		this.listVilles = listVilles;
 	}
 
+	public ArrayList<Departement> getListDpts() {
+		return listDpts;
+	}
+
+	public void setListDpts(ArrayList<Departement> listDpts) {
+		this.listDpts = listDpts;
+	}
+
+	public ArrayList<Region> getListRegions() {
+		return listRegions;
+	}
+
+	public void setListRegions(ArrayList<Region> listRegions) {
+		this.listRegions = listRegions;
+	}
 }

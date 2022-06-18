@@ -80,7 +80,6 @@ public class Vue {
 		System.out.println("  * Saisissez le code d'un département :      *");
 		System.out.println("  *                                           *");
 		System.out.println("  *********************************************");
-		
 	}
 	
 	public void displayMenu03() {
@@ -110,7 +109,17 @@ public class Vue {
 		System.out.println("  * Provence Alpes Côte d'Azur : 93           *");
 		System.out.println("  *                                           *");
 		System.out.println("  *********************************************");
-		
+	}
+	
+	public void displayMenu04() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  *********************************************");
+		System.out.println("  *                                           *");
+		System.out.println("  * Recensement                               *");
+		System.out.println("  *                                           *");
+		System.out.println("  * Top 10 des régions les plus peuplées :    *");
+		System.out.println("  *                                           *");
+		System.out.println("  *********************************************");
 	}
 
 	public void displayContinue() {
@@ -145,6 +154,17 @@ public class Vue {
 
 	public void displayPopRegion(Region region) {
 		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + region.getPopulTotale());
+	}
+
+	public void displayTopTenRegionByPop(ArrayList<Region> listRegion) {
+		int cpt = 1;
+		System.out.println();
+		for(Region region : listRegion) {
+			if (cpt <= 10) {
+				System.out.println("  " + region.getNomRegion() + " : " + region.getPopulTotale() + " habitants");
+			}
+			cpt++;
+		}
 	}
 
 }
