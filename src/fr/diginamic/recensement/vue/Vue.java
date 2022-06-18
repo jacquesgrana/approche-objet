@@ -68,6 +68,18 @@ public class Vue {
 		System.out.println("  *                                           *");
 		System.out.println("  *********************************************");
 	}
+	
+	public void displayMenu02() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  *********************************************");
+		System.out.println("  *                                           *");
+		System.out.println("  * Recensement                               *");
+		System.out.println("  *                                           *");
+		System.out.println("  * Saisissez le code d'un département :      *");
+		System.out.println("  *                                           *");
+		System.out.println("  *********************************************");
+		
+	}
 
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
@@ -80,11 +92,19 @@ public class Vue {
 
 	public void displayVilleNotFound(String nom) {
 		System.out.println("\n  Pas de ville à ce nom : " + nom);
-		
 	}
 
 	public void displayVille(Ville ville) {
-		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale());
+		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale() + " habitants");
 	}
+
+	public void displayDeptNotFound(String codeDpt) {
+		System.out.println("\n  Pas de département avec ce code : " + codeDpt);
+	}
+
+	public void displayPopDept(String codeDpt, Long popDept) {
+		System.out.println("\n  Code du département : " + codeDpt + " / population : " + popDept);
+	}
+
 
 }

@@ -35,7 +35,7 @@ public class Model {
 	public boolean loadDatasFromFile() throws IOException {
 		System.out.println("\n  Chargement des données à partir du fichier");
 		
-		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement.csv");
+		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement-modif-Lyon.csv");
 		boolean isFile = Files.isRegularFile(path);
 		boolean isReadable = Files.isReadable(path);
 		boolean isFileExists = Files.exists(path);
