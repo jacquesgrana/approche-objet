@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Model;
+import fr.diginamic.recensement.model.Region;
 import fr.diginamic.recensement.model.Ville;
 import fr.diginamic.recensement.vue.Vue;
 
@@ -60,11 +61,34 @@ public class ControllerApp {
 					searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
+			case '3' :
+				if (model.getIsFileLoaded()) {
+					searchAndDisplayRegionPop(this.model.getListVilles(), this.model.getScanner());
+				}
+				break;
 			}
 		}
 		while (!quit);
 		this.model.getScanner().close();
 		System.out.println("\n\nFin du programme");
+	}
+
+	private void searchAndDisplayRegionPop(ArrayList<Ville> listVilles, Scanner scanner) {
+		char choice = 'X';
+		this.vue.displayMenu03();
+		String choiceString = scanner.next();
+		choiceString = choiceString.toUpperCase();
+		Region region = calcPopRegion(choiceString, listVilles);
+		Long popRegion = region.getPopulTotale();
+		if(popRegion > 0) {
+			this.vue.displayPopRegion(region);
+		}
+		else {
+			this.vue.displayRegionNotFound(choiceString);
+		}
+		
+		waitForCToContinue(scanner);
+		
 	}
 
 	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, Scanner scanner) {
@@ -121,6 +145,19 @@ public class ControllerApp {
 		}
 
 		return null;
+	}
+	
+	private Region calcPopRegion(String codeRegion, ArrayList<Ville> listVilles) {
+		Long popTotale = 0L;
+		Region regionToReturn = new Region(codeRegion, "", 0L);
+		for (Ville ville : listVilles) {
+			if (ville.getCodeRegion().toUpperCase().equals(codeRegion)) {
+				popTotale += ville.getPopulTotale();
+				regionToReturn.setNomRegion(ville.getNomRegion());
+			}
+		}
+		regionToReturn.setPopulTotale(popTotale);
+		return regionToReturn;
 	}
 	
 	private Departement calcPopDept(String codeDept, ArrayList<Ville> listVilles) {
