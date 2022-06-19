@@ -17,6 +17,12 @@ public class Vue {
 		
 	}
 
+	/**
+	 * Méthode qui affiche le menu principal selon si les données ont été chargées 
+	 * (cf booléen isFileLoaded)
+	 * 
+	 * @param isFileLoaded
+	 */
 	public void displayGeneralMenu(boolean isFileLoaded) {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -48,7 +54,10 @@ public class Vue {
 		System.out.println("\n  Saisir votre choix et validez :");
 	}
 
-	public void displayLoadDataMenu() {
+	/**
+	 * Méthode qui affiche le menu du choix 0
+	 */
+	public void displayMenu00() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
 		System.out.println("  *                                            *");
@@ -60,6 +69,9 @@ public class Vue {
 		System.out.println("  **********************************************");
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 1
+	 */
 	public void displayMenu01() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -73,6 +85,9 @@ public class Vue {
 		System.out.println("  **********************************************");
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 2
+	 */
 	public void displayMenu02() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -86,6 +101,9 @@ public class Vue {
 		System.out.println("  **********************************************");
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 3
+	 */
 	public void displayMenu03() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -117,6 +135,9 @@ public class Vue {
 		System.out.println("  **********************************************");
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 4
+	 */
 	public void displayMenu04() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -128,6 +149,9 @@ public class Vue {
 		System.out.println("  **********************************************");
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 5
+	 */
 	public void displayMenu05() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -139,6 +163,9 @@ public class Vue {
 		System.out.println("  **********************************************");	
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 6
+	 */
 	public void displayMenu06() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -153,6 +180,9 @@ public class Vue {
 		System.out.println("  **********************************************");	
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 7
+	 */
 	public void displayMenu07() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -185,6 +215,9 @@ public class Vue {
 		System.out.println("  **********************************************");	
 	}
 	
+	/**
+	 * Méthode qui affiche le menu du choix 8
+	 */
 	public void displayMenu08() {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
@@ -197,34 +230,56 @@ public class Vue {
 		System.out.println("  **********************************************");	
 	}
 
+	/*
+	 * Méthode qui affiche 'C' pour continuer
+	 */
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
 	}
 
+	/**
+	 * Méthode qui affiche le nombre de villes de la liste
+	 * 
+	 * @param listVilles : liste des villes
+	 */
 	public void displayInfosDatas(ArrayList<Ville> listVilles) {
 		System.out.println("\n  Nombre de communes récupérées dans la liste : " + listVilles.size());
 		
 	}
 
+	/**
+	 * Méthode qui affiche 'Pas de ville à ce nom' et le nom choisi
+	 * 
+	 * @param nom : nom choisi
+	 */
 	public void displayVilleNotFound(String nom) {
 		System.out.println("\n  Pas de ville à ce nom : " + nom);
 	}
 
+	/**
+	 * Méthode qui affiche 'Pas de département avec ce code' et le code choisi
+	 * 
+	 * @param codeDpt : code choisi
+	 */
+	public void displayDeptNotFound(String codeDpt) {
+		System.out.println("\n  Pas de département avec ce code : " + codeDpt);
+	}
+	
+	/**
+	 * Méthode qui affiche 'Pas de région avec ce code' et le code choisi
+	 * 
+	 * @param codeRegion : code choisi
+	 */
+	public void displayRegionNotFound(String codeRegion) {
+		System.out.println("\n  Pas de région avec ce code : " + codeRegion);
+	}
+	
 	public void displayVille(Ville ville) {
 		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale() + " habitants");
 	}
 
-	public void displayDeptNotFound(String codeDpt) {
-		System.out.println("\n  Pas de département avec ce code : " + codeDpt);
-	}
-
 	public void displayPopDept(Departement dept) {
 		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale() + " habitants");
-	}
-	
-	public void displayRegionNotFound(String codeRegion) {
-		
-		System.out.println("\n  Pas de région avec ce code : " + codeRegion);
 	}
 
 	public void displayPopRegion(Region region) {

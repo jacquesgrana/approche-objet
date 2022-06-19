@@ -512,7 +512,7 @@ public class ControllerApp {
 	 * @throws IOException
 	 */
 	private void loadDatasFromCSV(Scanner scanner) throws IOException {
-		this.vue.displayLoadDataMenu();
+		this.vue.displayMenu00();
 		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
 		this.vue.displayInfosDatas(this.model.getListVilles());
 		this.waitForCToContinue(scanner);
