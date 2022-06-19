@@ -1,7 +1,7 @@
 package fr.diginamic.recensement.model;
 
 /**
- * Classe des objets ville. 
+ * Classe des objets villes. 
  * 
  * codeRegion : code de la région de la ville, 
  * nomRegion : nom de la région de la ville, 
@@ -10,7 +10,7 @@ package fr.diginamic.recensement.model;
  * nomCom : nom de la commune, 
  * populTotale : population de la commune. 
  * 
- * @author jacques
+ * @author jacques granarolo
  */
 public class Ville {
 
