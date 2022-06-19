@@ -2,6 +2,12 @@ package fr.diginamic.recensement.model;
 
 import java.util.Comparator;
 
+/**
+ * Comparator de Region selon la population en ordre décroissant
+ * 
+ * @see Region
+ * @author jacques granarolo
+ */
 public class ComparatorRegionByPopDecr implements Comparator<Region> {
 
 	@Override

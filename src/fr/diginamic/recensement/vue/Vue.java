@@ -130,8 +130,21 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  * Top 10 des départements les plus peuplés : *");
 		System.out.println("  *                                            *");
+		System.out.println("  **********************************************");	
+	}
+	
+	public void displayMenu06() {
+		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
-		
+		System.out.println("  *                                            *");
+		System.out.println("  * Recensement                                *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Top 10 des Villes les plus peuplés         *");
+		System.out.println("  * pour un département                        *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Saisir le code du département :            *");
+		System.out.println("  *                                            *");
+		System.out.println("  **********************************************");	
 	}
 
 	public void displayContinue() {
@@ -189,4 +202,20 @@ public class Vue {
 			cpt++;
 		}
 	}
+	
+	public void displayTopTenPopVille(ArrayList<Ville> listToDisplay) {
+		int cpt = 1;
+		System.out.println();
+		for(Ville ville : listToDisplay) {
+			if (cpt <= 10) {
+				System.out.println("  " + ville.getNomCom() + " / " + ville.getPopulTotale() + " habitants");
+			}
+			cpt++;
+		}
+	}
+
+	public void displayDeptInfos(Departement deptToDisplay) {
+		System.out.println("\n  département choisi : code : " + deptToDisplay.getCodeDept());
+	}
+
 }

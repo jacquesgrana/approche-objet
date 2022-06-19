@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import fr.diginamic.recensement.model.ComparatorDptByPopDecr;
 import fr.diginamic.recensement.model.ComparatorRegionByPopDecr;
+import fr.diginamic.recensement.model.ComparatorVilleByPopDecr;
 import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Model;
 import fr.diginamic.recensement.model.Region;
@@ -15,10 +16,16 @@ import fr.diginamic.recensement.vue.Vue;
 
 /**
  * Classe controlleur de l'application, utilise model et vue
+ * gère les choix de l'utilisateur et appelle les méthodes correspondantes
  * 
  * @see Model
  * @see Vue
  * @see Ville
+ * @see Departement
+ * @see Region
+ * @see ComparatorVilleByPopDecr
+ * @see ComparatorDptByPopDecr
+ * @see ComparatorRegionByPopDecr
  * @author jacques granarolo
  */
 public class ControllerApp {
@@ -34,7 +41,7 @@ public class ControllerApp {
 		//System.out.println("init Controller");
 		this.model = new Model();
 		this.vue = new Vue();
-		this.model.init();
+		this.model.init(); // TODO enlever, tout est fait dans le constructeur de Model
 	}
 
 	public void run() throws IOException {
@@ -80,6 +87,11 @@ public class ControllerApp {
 					searchAndDisplayTopTenDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
+			case '6' :
+				if (model.getIsFileLoaded()) {
+					searchAndDisplayTopTenPopVilleByDept(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
+				}
+				break;
 			}
 		}
 		while (!quit);
@@ -87,22 +99,55 @@ public class ControllerApp {
 		System.out.println("\n\nFin du programme");
 	}
 
+	private void searchAndDisplayTopTenPopVilleByDept(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
+		//char choice = 'X';
+		this.vue.displayMenu06();
+		String choiceString = scanner.next();
+		choiceString = choiceString.toUpperCase();
+		Departement deptToTest = new Departement(choiceString, 0L);
+		// appel methode qui renvoie une ArrayList des villes du département ou null
+		ArrayList<Ville> listVilleDept = generateListByDept(deptToTest, listVilles, listDpts);
+		//	si arraylist null
+		if (listVilleDept == null) {
+			// appel methode vue
+			this.vue.displayDeptNotFound(choiceString);
+			//System.out.println("\nrien a afficher");
+		}
+		else {
+			
+			// tri arraylist selon la pop decroissant
+			ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
+			Collections.sort(listVilleDept, comparator);
+			
+			// appel methode vue qui affiche les 10 1e elements de l'arraylist
+			this.vue.displayDeptInfos(deptToTest);
+			this.vue.displayTopTenPopVille(listVilleDept);
+			
+			/*
+			System.out.println();
+			for(Ville ville : listVilleDept) {
+				System.out.println(ville.toString());
+			}*/
+		}	
+		waitForCToContinue(scanner);
+	}
+
 	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
-		char choice = 'X';
+		//char choice = 'X';
 		this.vue.displayMenu05();
 		generateTopTenDeptList(listVilles, listDpts);
 		waitForCToContinue(scanner);
 	}
 
 	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
-		char choice = 'X';
+		//char choice = 'X';
 		this.vue.displayMenu04();
 		generateTopTenRegionList(listVilles, listRegion);
 		waitForCToContinue(scanner);
 	}
 
 	private void searchAndDisplayRegionPop(ArrayList<Ville> listVilles, Scanner scanner) {
-		char choice = 'X';
+		//char choice = 'X';
 		this.vue.displayMenu03();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
@@ -119,7 +164,7 @@ public class ControllerApp {
 	}
 
 	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, Scanner scanner) {
-		char choice = 'X';
+		//char choice = 'X';
 		this.vue.displayMenu02();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
@@ -138,7 +183,7 @@ public class ControllerApp {
 
 	// TODO probleme pour lyon --> modifier csv? -- FAIT - fichier csv modifié
 	private void searchAndDisplayVille(ArrayList<Ville> listVilles, Scanner scanner) {
-		char choice = 'X';
+		//char choice = 'X';
 		this.vue.displayMenu01();
 		// saisir nom ville
 		String choiceString = scanner.next();
@@ -172,6 +217,25 @@ public class ControllerApp {
 		}
 
 		return null;
+	}
+	
+	private ArrayList<Ville> generateListByDept(Departement deptToTest, ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
+		
+		boolean isCodeOk = listDpts.contains(deptToTest);
+		
+		if (isCodeOk) {
+			ArrayList<Ville> listToReturn = new ArrayList<>();
+			for(Ville ville : listVilles) {
+				if(ville.getCodeDept().equals(deptToTest.getCodeDept())) {
+					listToReturn.add(ville);
+				}
+			}
+			return listToReturn;
+		}
+		else {
+			return null;
+		}
+		
 	}
 	
 	private void generateTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
