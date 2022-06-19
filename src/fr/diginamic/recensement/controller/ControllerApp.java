@@ -106,11 +106,22 @@ public class ControllerApp {
 					searchAndDisplayTopTenPopVilleByRegion(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
 				}
 				break;
+			case '8' :
+				if (model.getIsFileLoaded()) {
+					searchAndDisplayTopTenPopVilleFrance(this.model.getListVilles(), this.model.getScanner());
+				}
+				break;
 			}
 		}
 		while (!quit);
 		this.model.getScanner().close();
 		System.out.println("\n\nFin du programme");
+	}
+
+	private void searchAndDisplayTopTenPopVilleFrance(ArrayList<Ville> listVilles, Scanner scanner) {
+		this.vue.displayMenu08();
+		displayTopTenPopVilleFrance(listVilles);
+		waitForCToContinue(scanner);
 	}
 
 	private void searchAndDisplayTopTenPopVilleByRegion(ArrayList<Ville> listVilles, ArrayList<Region> listRegions, Scanner scanner) {
@@ -259,6 +270,12 @@ public class ControllerApp {
 		}
 
 		return null;
+	}
+	
+	private void displayTopTenPopVilleFrance(ArrayList<Ville> listVilles) {
+		ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
+		Collections.sort(listVilles, comparator);
+		this.vue.displayTopTenPopVille(listVilles);
 	}
 	
 	private Region makeRegionFromCode(String codeRegion, ArrayList<Region> listRegions) {

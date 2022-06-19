@@ -184,6 +184,18 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  **********************************************");	
 	}
+	
+	public void displayMenu08() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  **********************************************");
+		System.out.println("  *                                            *");
+		System.out.println("  * Recensement                                *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Top 10 des Villes les plus peuplés         *");
+		System.out.println("  * de France :                                *");
+		System.out.println("  *                                            *");
+		System.out.println("  **********************************************");	
+	}
 
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
