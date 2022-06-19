@@ -19,6 +19,10 @@ public class Ville {
 		this.nomCom = nomCom;
 		this.populTotale = populTotale;
 	}
+	
+	public Ville clone() {
+		return new Ville(this.codeRegion, this.nomRegion, this.codeDept, this.codeCom, this.nomCom, this.populTotale);
+	}
 
 
 	@Override

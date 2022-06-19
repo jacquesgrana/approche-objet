@@ -272,4 +272,8 @@ public class Vue {
 		System.out.println("\n  Région choisie: code : " + regionToDisplay.getCodeRegion() + " / nom : " + regionToDisplay.getNomRegion());
 	}
 
+	public void displayAppEnd() {
+		System.out.println("\n  Fin du programme");
+	}
+
 }

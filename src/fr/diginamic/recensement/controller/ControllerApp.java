@@ -41,7 +41,6 @@ public class ControllerApp {
 	 * initialisation
 	 */
 	public void init() {
-		//System.out.println("init Controller");
 		this.model = new Model();
 		this.vue = new Vue();
 		this.model.init(); // TODO enlever, tout est fait dans le constructeur de Model
@@ -55,7 +54,6 @@ public class ControllerApp {
 	 * @throws IOException
 	 */
 	public void run() throws IOException {
-		//System.out.println("run Controller");
 		boolean quit = false;
 		char choice = 'X';
 		do {
@@ -69,54 +67,54 @@ public class ControllerApp {
 			break;
 			case '0' :
 				if (!model.getIsFileLoaded()) {
-					loadDatasFromCSV(this.model.getScanner());
+					this.loadDatasFromCSV(this.model.getScanner());
 				}
 				break;
 			case '1' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayVille(this.model.getListVilles(), this.model.getScanner());
+					this.searchAndDisplayVille(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			case '2' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getScanner());
+					this.searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			case '3' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayRegionPop(this.model.getListVilles(), this.model.getScanner());
+					this.searchAndDisplayRegionPop(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			case '4' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayTopTenRegionPop(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
+					this.searchAndDisplayTopTenRegionPop(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
 				}
 				break;
 			case '5' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayTopTenDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
+					this.searchAndDisplayTopTenDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '6' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayTopTenPopVilleByDept(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
+					this.searchAndDisplayTopTenPopVilleByDept(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '7' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayTopTenPopVilleByRegion(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
+					this.searchAndDisplayTopTenPopVilleByRegion(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
 				}
 				break;
 			case '8' :
 				if (model.getIsFileLoaded()) {
-					searchAndDisplayTopTenPopVilleFrance(this.model.getListVilles(), this.model.getScanner());
+					this.searchAndDisplayTopTenPopVilleFrance(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			}
 		}
 		while (!quit);
 		this.model.getScanner().close();
-		System.out.println("\n\nFin du programme");
+		this.vue.displayAppEnd();
 	}
 
 	/**
@@ -129,8 +127,8 @@ public class ControllerApp {
 	 */
 	private void searchAndDisplayTopTenPopVilleFrance(ArrayList<Ville> listVilles, Scanner scanner) {
 		this.vue.displayMenu08();
-		displayTopTenPopVilleFrance(listVilles);
-		waitForCToContinue(scanner);
+		this.displayTopTenPopVilleFrance(listVilles);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -149,17 +147,13 @@ public class ControllerApp {
 		this.vue.displayMenu07();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		// TODO appel fonction qui renvoie un objet Region a partir de choiceString et de listRegions si code pas ok renvoie null
-		Region regionToTest = makeRegionFromCode(choiceString, listRegions);
-		//System.out.println("région choisie : " + regionToTest.toString());
-		
+		Region regionToTest = this.makeRegionFromCode(choiceString, listRegions);		
 		if (regionToTest == null) {
 			this.vue.displayRegionNotFound(choiceString);
 		}
 		else {
-			ArrayList<Ville> listVilleRegion = generateVilleByRegionList(regionToTest, listVilles, listRegions);
+			ArrayList<Ville> listVilleRegion = this.generateVilleByRegionList(regionToTest, listVilles, listRegions);
 			if (listVilleRegion == null) {
-				// appel methode vue
 				this.vue.displayRegionNotFound(choiceString);
 			}
 			else {
@@ -169,7 +163,7 @@ public class ControllerApp {
 				this.vue.displayTopTenPopVille(listVilleRegion);
 			}
 		}
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -185,28 +179,21 @@ public class ControllerApp {
 	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayTopTenPopVilleByDept(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu06();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
 		Departement deptToTest = new Departement(choiceString, 0L);
-		// appel methode qui renvoie une ArrayList des villes du département ou null
-		ArrayList<Ville> listVilleDept = generateVilleByDeptList(deptToTest, listVilles, listDpts);
-		//	si arraylist null
+		ArrayList<Ville> listVilleDept = this.generateVilleByDeptList(deptToTest, listVilles, listDpts);
 		if (listVilleDept == null) {
-			// appel methode vue
 			this.vue.displayDeptNotFound(choiceString);
 		}
 		else {
-			// tri arraylist selon la pop decroissant
 			ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
 			Collections.sort(listVilleDept, comparator);
-			
-			// appel methode vue qui affiche les 10 1e elements de l'arraylist
 			this.vue.displayDeptInfos(deptToTest);
 			this.vue.displayTopTenPopVille(listVilleDept);
 		}	
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -219,10 +206,9 @@ public class ControllerApp {
 	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu05();
-		generateTopTenDeptList(listVilles, listDpts);
-		waitForCToContinue(scanner);
+		this.generateTopTenDeptList(listVilles, listDpts);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -235,10 +221,9 @@ public class ControllerApp {
 	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu04();
-		generateTopTenRegionList(listVilles, listRegion);
-		waitForCToContinue(scanner);
+		this.generateTopTenRegionList(listVilles, listRegion);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -253,11 +238,10 @@ public class ControllerApp {
 	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayRegionPop(ArrayList<Ville> listVilles, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu03();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		Region regionToTest = calcPopRegion(choiceString, listVilles);
+		Region regionToTest = this.calcPopRegion(choiceString, listVilles);
 		Long popRegion = regionToTest.getPopulTotale();
 		if(popRegion > 0) {
 			this.vue.displayPopRegion(regionToTest);
@@ -266,7 +250,7 @@ public class ControllerApp {
 			this.vue.displayRegionNotFound(choiceString);
 		}
 		
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 	}
 
 	/**
@@ -275,19 +259,16 @@ public class ControllerApp {
 	 * appelle la méthode qui calcule la population du département choisi,
 	 * si le code n'est pas reconnu : appelle la méthode de la vue correspondante,
 	 * si le code est ok : appelle la méthode de la vue qui affiche les infos du département,
-	 * puis attend la saisie de 'c' pour revenir au menu principal
+	 * puis attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param listVilles liste des villes à traiter
 	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu02();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		
-		// renvoyer un dept
-		Departement dept = calcPopDept(choiceString, listVilles);
+		Departement dept = this.calcPopDept(choiceString, listVilles);
 		Long popDept = dept.getPopulTotale();
 		if(popDept > 0) {
 			this.vue.displayPopDept(dept);
@@ -295,63 +276,99 @@ public class ControllerApp {
 		else {
 			this.vue.displayDeptNotFound(choiceString);
 		}
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 	}
 
 	// TODO probleme pour lyon --> modifier csv? -- FAIT - fichier csv modifié
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
+	 * attend la saisie du nom de la ville a traiter, 
+	 * passe la String saisie en majuscule, 
+	 * crée un objet Ville retourné par la méthode qui cherche et renvoie la ville correspondante à la saisie, 
+	 * si objet ville différent de null : appel de la méthode la vue qui affiche les infos de la ville, 
+	 * sinon : appel de la méthode la vue qui affiche qu'il n'y a pas de ville à ce nom, 
+	 * puis attend la saisie de 'c' pour revenir au menu principal. 
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayVille(ArrayList<Ville> listVilles, Scanner scanner) {
-		//char choice = 'X';
 		this.vue.displayMenu01();
-		// saisir nom ville
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		Ville foundVille = searchVille(choiceString, listVilles);
-		// si nom trouvé --> affiche le nom et la population de la ville
+		Ville foundVille = this.searchVille(choiceString, listVilles);
 		if (foundVille != null) {
-			// appel methode vue qui affiche les infos de la ville
 			this.vue.displayVille(foundVille);
-
 		}
-		// sinon --> affiche ville inconnue 
 		else {
 			this.vue.displayVilleNotFound(choiceString);
-			// appel methode vue qui affiche pas de ville a ce nom
-			//System.out.println("objet null");
-
 		}
 
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Méthode qui renvoie la ville trouvée dans la liste à partir du nom passé en paramètre, 
+	 * boucle sur la liste des villes, 
+	 * si une ville correspond : renvoie un clone de la ville trouvée, 
+	 * sinon : renvoie null. 
+	 * 
+	 * @param nomVille nom de la ville a trouver
+	 * @param listVilles liste des villes à traiter
+	 * @return objet ville trouvé ou null si rien trouvé
+	 */
 	private Ville searchVille(String nomVille, ArrayList<Ville> listVilles) {
-		// parcours liste
 		for (Ville ville : listVilles) {
-			// si nomVille = ville.getNom
 			if (ville.getNomCom().toUpperCase().equals(nomVille)) {
-				// return ville
-				return ville;
+				return ville.clone();
 			}	
 		}
-
 		return null;
 	}
 	
+	/**
+	 * Méthode qui affiche le top 10 des villes les plus peuplées de France, 
+	 * crée un objet comparator qui trie des villes selon la population en ordre décroissant, 
+	 * execute le tri sur la liste des villes, 
+	 * appelle la fonction de la vue qui affiche les dix premiers éléments de la liste.  
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 */
 	private void displayTopTenPopVilleFrance(ArrayList<Ville> listVilles) {
 		ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
 		Collections.sort(listVilles, comparator);
 		this.vue.displayTopTenPopVille(listVilles);
 	}
 	
+	/**
+	 * Méthode qui renvoie un objet région de la liste des régions à partir du code passé en paramètre, 
+	 * boucle sur la liste des régions, 
+	 * si le code est trouvé dans la liste : retourne un clone de la région trouvée dans la liste, 
+	 * sinon : renvoie null. 
+	 * 
+	 * @param codeRegion code de la région à utiliser
+	 * @param listRegions liste des régions
+	 * @return objet région trouvé ou null si rien trouvé
+	 */
 	private Region makeRegionFromCode(String codeRegion, ArrayList<Region> listRegions) {
 		for(Region region : listRegions) {
 			if(region.getCodeRegion().equals(codeRegion)) {
-				Region regionToReturn = region.clone();
-				return regionToReturn;
+				return region.clone();
 			}
 		}
 		return null;
 	}
 	
+	/**
+	 * Méthode qui renvoie la liste des villes de la région passée en paramètre,
+	 * si le code existe dans la liste des regions : construit la liste avec une boucle sur la liste des villes et retourne la liste, 
+	 * sinon : retourne null. 
+	 * 
+	 * @param regionToTest région à utiliser pour filtrer la liste des villes
+	 * @param listVilles liste des villes à traiter
+	 * @param listRegions liste des régions
+	 * @return liste des villes de la région ou null si la région n'existe pas dans la liste
+	 */
 	private ArrayList<Ville> generateVilleByRegionList(Region regionToTest, ArrayList<Ville> listVilles, ArrayList<Region> listRegions) {
 		boolean isCodeOk = listRegions.contains(regionToTest);
 		if (isCodeOk) {
@@ -368,6 +385,16 @@ public class ControllerApp {
 		}
 	}
 	
+	/**
+	 * Méthode qui renvoie la liste des villes du département passé en paramètre,
+	 * si le code existe dans la liste des départements : construit la liste avec une boucle sur la liste des villes et retourne la liste, 
+	 * sinon : retourne null. 
+	 * 
+	 * @param deptToTest département à utiliser pour filtrer la liste des villes
+	 * @param listVilles liste des villes à traiter
+	 * @param listDpts liste des départements
+	 * @return liste des villes de la région ou null si la région n'existe pas dans la liste
+	 */
 	private ArrayList<Ville> generateVilleByDeptList(Departement deptToTest, ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
 		boolean isCodeOk = listDpts.contains(deptToTest);
 		if (isCodeOk) {
@@ -386,7 +413,7 @@ public class ControllerApp {
 	
 	private void generateTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
 		for (Ville ville : listVilles) {
-			Departement deptToTest = new Departement(ville.getCodeDept(),0L);
+			Departement deptToTest = new Departement(ville.getCodeDept(), 0L);
 			for (Departement dept : listDpts) {
 				if (dept.equals(deptToTest)) {
 					dept.setPopulTotale(dept.getPopulTotale() + ville.getPopulTotale());
@@ -469,8 +496,7 @@ public class ControllerApp {
 		this.vue.displayLoadDataMenu();
 		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
 		this.vue.displayInfosDatas(this.model.getListVilles());
-		//char choice = 'X';
-		waitForCToContinue(scanner);
+		this.waitForCToContinue(scanner);
 
 	}
 

@@ -9,6 +9,10 @@ public class Departement {
 		this.codeDept = codeDept;
 		this.populTotale = populTotale;
 	}
+	
+	public Departement clone() {
+		return new Departement(this.codeDept, this.populTotale);
+	}
 
 	@Override
 	public String toString() {
