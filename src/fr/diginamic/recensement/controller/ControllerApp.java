@@ -50,7 +50,8 @@ public class ControllerApp {
 	// TODO gestion des exceptions !!!
 
 	/**
-	 * méthode principale de l'application, affiche le menu et appelle les méthodes selon les choix de l'utilisateur
+	 * méthode principale de l'application, 
+	 * affiche le menu et appelle les méthodes selon les choix de l'utilisateur
 	 * @throws IOException
 	 */
 	public void run() throws IOException {
@@ -118,12 +119,32 @@ public class ControllerApp {
 		System.out.println("\n\nFin du programme");
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * appelle la methode qui affiche la liste du top 10 des villes les plus peuplées de France
+	 * et attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayTopTenPopVilleFrance(ArrayList<Ville> listVilles, Scanner scanner) {
 		this.vue.displayMenu08();
 		displayTopTenPopVilleFrance(listVilles);
 		waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
+	 * attend la choix d'un code de région par l'utilisateur, 
+	 * appelle la méthode qui génère la liste des communes de la région choisie par l'utilisateur,
+	 * trie la liste selon la population en ordre décroissant, 
+	 * puis appelle la méthode de la vue qui affiche les 10 1ers éléments de la liste 
+	 * et attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param listRegions liste des régions collectées
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayTopTenPopVilleByRegion(ArrayList<Ville> listVilles, ArrayList<Region> listRegions, Scanner scanner) {
 		this.vue.displayMenu07();
 		String choiceString = scanner.next();
@@ -136,7 +157,7 @@ public class ControllerApp {
 			this.vue.displayRegionNotFound(choiceString);
 		}
 		else {
-			ArrayList<Ville> listVilleRegion = generateListByRegion(regionToTest, listVilles, listRegions);
+			ArrayList<Ville> listVilleRegion = generateVilleByRegionList(regionToTest, listVilles, listRegions);
 			if (listVilleRegion == null) {
 				// appel methode vue
 				this.vue.displayRegionNotFound(choiceString);
@@ -152,12 +173,16 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Affiche le menu correspondant, attend la chois d'un code de départment par l'utilisateur, appelle la méthode qui génère la liste des communes du département choisi par l'utilisateur,
-	 * trie la liste selon la population en ordre décroissant, puis appelle la méthode de la vue qui affiche les 10 1ers éléments de la liste
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * attend la choix d'un code de département par l'utilisateur, 
+	 * appelle la méthode qui génère la liste des communes du département choisi par l'utilisateur,
+	 * trie la liste selon la population en ordre décroissant, 
+	 * puis appelle la méthode de la vue qui affiche les 10 1ers éléments de la liste 
+	 * et attend la saisie de 'c' pour revenir au menu principal
 	 * 
-	 * @param listVilles
-	 * @param listDpts
-	 * @param scanner
+	 * @param listVilles liste des villes à traiter
+	 * @param listDpts liste des départements collectés
+	 * @param scanner pour la gestion du clavier
 	 */
 	private void searchAndDisplayTopTenPopVilleByDept(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		//char choice = 'X';
@@ -166,14 +191,13 @@ public class ControllerApp {
 		choiceString = choiceString.toUpperCase();
 		Departement deptToTest = new Departement(choiceString, 0L);
 		// appel methode qui renvoie une ArrayList des villes du département ou null
-		ArrayList<Ville> listVilleDept = generateListByDept(deptToTest, listVilles, listDpts);
+		ArrayList<Ville> listVilleDept = generateVilleByDeptList(deptToTest, listVilles, listDpts);
 		//	si arraylist null
 		if (listVilleDept == null) {
 			// appel methode vue
 			this.vue.displayDeptNotFound(choiceString);
 		}
 		else {
-			
 			// tri arraylist selon la pop decroissant
 			ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
 			Collections.sort(listVilleDept, comparator);
@@ -185,6 +209,15 @@ public class ControllerApp {
 		waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * appelle la méthode qui affecte les populations de la liste des département et l'affiche,
+	 * puis attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param listDpts liste des départements collectés
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		//char choice = 'X';
 		this.vue.displayMenu05();
@@ -192,6 +225,15 @@ public class ControllerApp {
 		waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * appelle la méthode qui affecte les populations de la liste des régions et l'affiche,
+	 * puis attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param listRegion liste des départements collectés
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
 		//char choice = 'X';
 		this.vue.displayMenu04();
@@ -199,15 +241,26 @@ public class ControllerApp {
 		waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * attend la saisie du code de la région à traiter,
+	 * appelle la méthode qui calcule la population de la région choisie,
+	 * si le code n'est pas reconnu : appelle la méthode de la vue correspondante,
+	 * si le code est ok : appelle la méthode de la vue qui affiche les infos de la région,
+	 * puis attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayRegionPop(ArrayList<Ville> listVilles, Scanner scanner) {
 		//char choice = 'X';
 		this.vue.displayMenu03();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		Region region = calcPopRegion(choiceString, listVilles);
-		Long popRegion = region.getPopulTotale();
+		Region regionToTest = calcPopRegion(choiceString, listVilles);
+		Long popRegion = regionToTest.getPopulTotale();
 		if(popRegion > 0) {
-			this.vue.displayPopRegion(region);
+			this.vue.displayPopRegion(regionToTest);
 		}
 		else {
 			this.vue.displayRegionNotFound(choiceString);
@@ -216,6 +269,17 @@ public class ControllerApp {
 		waitForCToContinue(scanner);
 	}
 
+	/**
+	 * Appelle la fonction de la vue qui affiche le menu correspondant,
+	 * attend la saisie du code du département à traiter,
+	 * appelle la méthode qui calcule la population du département choisi,
+	 * si le code n'est pas reconnu : appelle la méthode de la vue correspondante,
+	 * si le code est ok : appelle la méthode de la vue qui affiche les infos du département,
+	 * puis attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param listVilles liste des villes à traiter
+	 * @param scanner pour la gestion du clavier
+	 */
 	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, Scanner scanner) {
 		//char choice = 'X';
 		this.vue.displayMenu02();
@@ -288,7 +352,7 @@ public class ControllerApp {
 		return null;
 	}
 	
-	private ArrayList<Ville> generateListByRegion(Region regionToTest, ArrayList<Ville> listVilles, ArrayList<Region> listRegions) {
+	private ArrayList<Ville> generateVilleByRegionList(Region regionToTest, ArrayList<Ville> listVilles, ArrayList<Region> listRegions) {
 		boolean isCodeOk = listRegions.contains(regionToTest);
 		if (isCodeOk) {
 			ArrayList<Ville> listToReturn = new ArrayList<>();
@@ -304,7 +368,7 @@ public class ControllerApp {
 		}
 	}
 	
-	private ArrayList<Ville> generateListByDept(Departement deptToTest, ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
+	private ArrayList<Ville> generateVilleByDeptList(Departement deptToTest, ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
 		boolean isCodeOk = listDpts.contains(deptToTest);
 		if (isCodeOk) {
 			ArrayList<Ville> listToReturn = new ArrayList<>();
@@ -389,16 +453,34 @@ public class ControllerApp {
 		return deptToReturn;
 	}
 
+	// TODO gérer exception ici
+	
+	/**
+	 * Méthode chargée de peupler la liste des villes, des départements et des régions
+	 * Affiche le menu correspondant, met a jour le booléen isFileLoaded en appellant la méthode
+	 * du modéle qui peuples les liste à partir du fichier .csv (fichier modifié pour que Lyon soit gérée), 
+	 * appelle la méthode de la vue qui affiche le nombre de villes crées,
+	 * et attend la saisie de 'c' pour revenir au menu principal
+	 * 
+	 * @param scanner
+	 * @throws IOException
+	 */
 	private void loadDatasFromCSV(Scanner scanner) throws IOException {
 		this.vue.displayLoadDataMenu();
 		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
 		this.vue.displayInfosDatas(this.model.getListVilles());
-		char choice = 'X';
+		//char choice = 'X';
 		waitForCToContinue(scanner);
 
 	}
 
-
+   /**
+	* Méthode qui attend la saisie de 'C' par l'utilisateur pour continuer
+	* Appelle la méthode la vue qui affiche le texte appelant à saisie 'c' pour continuer,
+ 	* attend que la saisie soit correcte pour continuer
+ 	* 
+ 	* @param scanner pour la gestion du clavier
+ 	*/
 	private void waitForCToContinue(Scanner scanner) {
 		char choice;
 		do {
@@ -409,7 +491,7 @@ public class ControllerApp {
 		while (choice != 'C' && choice != 'c');
 	}
 
-
+/*
 	public Model getModel() {
 		return model;
 	}
@@ -424,6 +506,6 @@ public class ControllerApp {
 
 	public void setVue(Vue vue) {
 		this.vue = vue;
-	}
+	}*/
 
 }

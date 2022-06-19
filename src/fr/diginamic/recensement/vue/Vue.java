@@ -219,7 +219,7 @@ public class Vue {
 	}
 
 	public void displayPopDept(Departement dept) {
-		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale());
+		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale() + " habitants");
 	}
 	
 	public void displayRegionNotFound(String codeRegion) {
@@ -228,7 +228,7 @@ public class Vue {
 	}
 
 	public void displayPopRegion(Region region) {
-		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + region.getPopulTotale());
+		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + region.getPopulTotale() + " habitants");
 	}
 
 	public void displayTopTenRegionByPop(ArrayList<Region> listRegion) {
