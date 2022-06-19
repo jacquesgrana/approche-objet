@@ -66,7 +66,9 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  * Recensement                                *");
 		System.out.println("  *                                            *");
-		System.out.println("  * Saisissez le nom d'une ville :             *");
+		System.out.println("  * Affiche la population d'une ville          *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Saisissez le nom :                         *");
 		System.out.println("  *                                            *");
 		System.out.println("  **********************************************");
 	}
@@ -77,7 +79,9 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  * Recensement                                *");
 		System.out.println("  *                                            *");
-		System.out.println("  * Saisissez le code d'un département :       *");
+		System.out.println("  * Affiche la population d'un département     *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Saisissez le code :                        *");
 		System.out.println("  *                                            *");
 		System.out.println("  **********************************************");
 	}
@@ -88,7 +92,9 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  * Recensement                                *");
 		System.out.println("  *                                            *");
-		System.out.println("  * Saisissez le code d'une région :           *");
+		System.out.println("  * Affiche la population d'une région         *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Saisissez le code :                        *");
 		System.out.println("  *                                            *");
 		System.out.println("  * Auvergne Rhone Alpes : 84                  *");
 		System.out.println("  * Bourgogne Franche Comté : 27               *");
@@ -146,13 +152,45 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  **********************************************");	
 	}
+	
+	public void displayMenu07() {
+		System.out.println("\n\n\n\n");
+		System.out.println("  **********************************************");
+		System.out.println("  *                                            *");
+		System.out.println("  * Recensement                                *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Top 10 des Villes les plus peuplés         *");
+		System.out.println("  * pour une région                            *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Saisir le code de la région :              *");
+		System.out.println("  *                                            *");
+		System.out.println("  * Auvergne Rhone Alpes : 84                  *");
+		System.out.println("  * Bourgogne Franche Comté : 27               *");
+		System.out.println("  * Bretagne : 53                              *");
+		System.out.println("  * Centre Val de Loire : 24                   *");
+		System.out.println("  * Corse : 94                                 *");
+		System.out.println("  * Grand Est : 44                             *");
+		System.out.println("  * Guadeloupe : 1                             *");
+		System.out.println("  * Guyane : 3                                 *");
+		System.out.println("  * Hauts de France : 32                       *");
+		System.out.println("  * Ile de France : 11                         *");
+		System.out.println("  * La Réunion : 4                             *");
+		System.out.println("  * Martinique : 2                             *");
+		System.out.println("  * Normandie : 28                             *");
+		System.out.println("  * Nouvelle Aquitaine : 75                    *");
+		System.out.println("  * Occitanie : 76                             *");
+		System.out.println("  * Pays de la Loire : 52                      *");
+		System.out.println("  * Provence Alpes Côte d'Azur : 93            *");
+		System.out.println("  *                                            *");
+		System.out.println("  **********************************************");	
+	}
 
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
 	}
 
 	public void displayInfosDatas(ArrayList<Ville> listVilles) {
-		System.out.println("\n  Nombre de villes dans la liste : " + listVilles.size());
+		System.out.println("\n  Nombre de communes récupérées dans la liste : " + listVilles.size());
 		
 	}
 
@@ -215,7 +253,11 @@ public class Vue {
 	}
 
 	public void displayDeptInfos(Departement deptToDisplay) {
-		System.out.println("\n  département choisi : code : " + deptToDisplay.getCodeDept());
+		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept());
+	}
+
+	public void displayRegionInfos(Region regionToDisplay) {
+		System.out.println("\n  Région choisie: code : " + regionToDisplay.getCodeRegion() + " / nom : " + regionToDisplay.getNomRegion());
 	}
 
 }

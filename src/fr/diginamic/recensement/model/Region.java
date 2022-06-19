@@ -26,6 +26,10 @@ public class Region {
 		//boolean popRegionEquals = regionToTest.getPopulTotale() == this.getPopulTotale();
 		return (codeRegionEquals && nomRegionEquals); // && popRegionEquals
 	}
+	
+	public Region clone() {
+		return new Region(this.codeRegion, this.nomRegion, this.populTotale);
+	}
 
 	public String getCodeRegion() {
 		return this.codeRegion;

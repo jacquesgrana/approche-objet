@@ -37,13 +37,22 @@ public class ControllerApp {
 
 	}
 
+	/**
+	 * initialisation
+	 */
 	public void init() {
 		//System.out.println("init Controller");
 		this.model = new Model();
 		this.vue = new Vue();
 		this.model.init(); // TODO enlever, tout est fait dans le constructeur de Model
 	}
+	
+	// TODO gestion des exceptions !!!
 
+	/**
+	 * méthode principale de l'application, affiche le menu et appelle les méthodes selon les choix de l'utilisateur
+	 * @throws IOException
+	 */
 	public void run() throws IOException {
 		//System.out.println("run Controller");
 		boolean quit = false;
@@ -92,6 +101,11 @@ public class ControllerApp {
 					searchAndDisplayTopTenPopVilleByDept(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
+			case '7' :
+				if (model.getIsFileLoaded()) {
+					searchAndDisplayTopTenPopVilleByRegion(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
+				}
+				break;
 			}
 		}
 		while (!quit);
@@ -99,6 +113,41 @@ public class ControllerApp {
 		System.out.println("\n\nFin du programme");
 	}
 
+	private void searchAndDisplayTopTenPopVilleByRegion(ArrayList<Ville> listVilles, ArrayList<Region> listRegions, Scanner scanner) {
+		this.vue.displayMenu07();
+		String choiceString = scanner.next();
+		choiceString = choiceString.toUpperCase();
+		// TODO appel fonction qui renvoie un objet Region a partir de choiceString et de listRegions si code pas ok renvoie null
+		Region regionToTest = makeRegionFromCode(choiceString, listRegions);
+		//System.out.println("région choisie : " + regionToTest.toString());
+		
+		if (regionToTest == null) {
+			this.vue.displayRegionNotFound(choiceString);
+		}
+		else {
+			ArrayList<Ville> listVilleRegion = generateListByRegion(regionToTest, listVilles, listRegions);
+			if (listVilleRegion == null) {
+				// appel methode vue
+				this.vue.displayRegionNotFound(choiceString);
+			}
+			else {
+				ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
+				Collections.sort(listVilleRegion, comparator);
+				this.vue.displayRegionInfos(regionToTest);
+				this.vue.displayTopTenPopVille(listVilleRegion);
+			}
+		}
+		waitForCToContinue(scanner);
+	}
+
+	/**
+	 * Affiche le menu correspondant, attend la chois d'un code de départment par l'utilisateur, appelle la méthode qui génère la liste des communes du département choisi par l'utilisateur,
+	 * trie la liste selon la population en ordre décroissant, puis appelle la méthode de la vue qui affiche les 10 1ers éléments de la liste
+	 * 
+	 * @param listVilles
+	 * @param listDpts
+	 * @param scanner
+	 */
 	private void searchAndDisplayTopTenPopVilleByDept(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		//char choice = 'X';
 		this.vue.displayMenu06();
@@ -111,7 +160,6 @@ public class ControllerApp {
 		if (listVilleDept == null) {
 			// appel methode vue
 			this.vue.displayDeptNotFound(choiceString);
-			//System.out.println("\nrien a afficher");
 		}
 		else {
 			
@@ -122,12 +170,6 @@ public class ControllerApp {
 			// appel methode vue qui affiche les 10 1e elements de l'arraylist
 			this.vue.displayDeptInfos(deptToTest);
 			this.vue.displayTopTenPopVille(listVilleDept);
-			
-			/*
-			System.out.println();
-			for(Ville ville : listVilleDept) {
-				System.out.println(ville.toString());
-			}*/
 		}	
 		waitForCToContinue(scanner);
 	}
@@ -219,10 +261,34 @@ public class ControllerApp {
 		return null;
 	}
 	
+	private Region makeRegionFromCode(String codeRegion, ArrayList<Region> listRegions) {
+		for(Region region : listRegions) {
+			if(region.getCodeRegion().equals(codeRegion)) {
+				Region regionToReturn = region.clone();
+				return regionToReturn;
+			}
+		}
+		return null;
+	}
+	
+	private ArrayList<Ville> generateListByRegion(Region regionToTest, ArrayList<Ville> listVilles, ArrayList<Region> listRegions) {
+		boolean isCodeOk = listRegions.contains(regionToTest);
+		if (isCodeOk) {
+			ArrayList<Ville> listToReturn = new ArrayList<>();
+			for(Ville ville : listVilles) {
+				if(ville.getCodeRegion().equals(regionToTest.getCodeRegion())) {
+					listToReturn.add(ville);
+				}
+			}
+			return listToReturn;
+		}
+		else {
+			return null;
+		}
+	}
+	
 	private ArrayList<Ville> generateListByDept(Departement deptToTest, ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
-		
 		boolean isCodeOk = listDpts.contains(deptToTest);
-		
 		if (isCodeOk) {
 			ArrayList<Ville> listToReturn = new ArrayList<>();
 			for(Ville ville : listVilles) {
@@ -235,7 +301,6 @@ public class ControllerApp {
 		else {
 			return null;
 		}
-		
 	}
 	
 	private void generateTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {

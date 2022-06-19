@@ -8,7 +8,7 @@ public class Application {
 
 	/**
 	 * Point d'entrée de l'application
-	 * initialise et lance le controlleur
+	 * instancie, initialise et lance le controlleur de l'application
 	 * 
 	 * @see ControllerApp
 	 * @param args
