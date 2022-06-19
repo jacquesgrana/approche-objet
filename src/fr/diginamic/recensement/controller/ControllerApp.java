@@ -53,9 +53,8 @@ public class ControllerApp {
 	/**
 	 * méthode principale de l'application, 
 	 * affiche le menu et appelle les méthodes selon les choix de l'utilisateur
-	 * @throws IOException
 	 */
-	public void run() throws IOException {
+	public void run(){
 		boolean quit = false;
 		char choice = 'X';
 		do {
@@ -155,15 +154,10 @@ public class ControllerApp {
 		}
 		else {
 			ArrayList<Ville> listVilleRegion = this.generateVilleByRegionList(regionToTest, listVilles, listRegions);
-			if (listVilleRegion == null) {
-				this.vue.displayRegionNotFound(choiceString);
-			}
-			else {
-				ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
-				Collections.sort(listVilleRegion, comparator);
-				this.vue.displayRegionInfos(regionToTest);
-				this.vue.displayTopTenVilleList(listVilleRegion);
-			}
+			ComparatorVilleByPopDecr comparator = new ComparatorVilleByPopDecr();
+			Collections.sort(listVilleRegion, comparator);
+			this.vue.displayRegionInfos(regionToTest);
+			this.vue.displayTopTenVilleList(listVilleRegion);
 		}
 		this.waitForCToContinue(scanner);
 	}
@@ -498,8 +492,6 @@ public class ControllerApp {
 		deptToReturn.setPopulTotale(popTotale);
 		return deptToReturn;
 	}
-
-	// TODO gérer exception ici
 	
 	/**
 	 * Méthode chargée de peupler la liste des villes, des départements et des régions
@@ -508,13 +500,20 @@ public class ControllerApp {
 	 * appelle la méthode de la vue qui affiche le nombre de villes crées,
 	 * et attend la saisie de 'c' pour revenir au menu principal
 	 * 
-	 * @param : scanner
-	 * @throws IOException
+	 * @param : scanner : pour gérer les saisies du clavier
 	 */
-	private void loadDatasFromCSV(Scanner scanner) throws IOException {
+	private void loadDatasFromCSV(Scanner scanner) {
 		this.vue.displayMenu00();
-		this.model.setIsFileLoaded(this.model.loadDatasFromFile());
-		this.vue.displayInfosDatas(this.model.getListVilles());
+		try {
+			this.model.setIsFileLoaded(this.model.loadDatasFromFile());
+		} 
+		catch (IOException e) {
+			this.model.setIsFileLoaded(false);
+			this.vue.displayIOErrorMessage(e);
+		}
+		if(this.model.getIsFileLoaded()) {
+			this.vue.displayInfosDatas(this.model.getListVilles());
+		}
 		this.waitForCToContinue(scanner);
 
 	}

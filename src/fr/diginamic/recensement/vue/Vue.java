@@ -1,5 +1,6 @@
 package fr.diginamic.recensement.vue;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import fr.diginamic.recensement.model.Departement;
@@ -372,6 +373,10 @@ public class Vue {
 	 */
 	public void displayAppEnd() {
 		System.out.println("\n  Fin du programme");
+	}
+
+	public void displayIOErrorMessage(IOException e) {
+		System.out.println("\n  Erreur pendant le chargement du fichier .csv : message : " + e.getMessage());
 	}
 
 }
