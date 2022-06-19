@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.diginamic.recensement"},{"l":"fr.diginamic.recensement.controller"},{"l":"fr.diginamic.recensement.model"},{"l":"fr.diginamic.recensement.vue"}];updateSearchResults();

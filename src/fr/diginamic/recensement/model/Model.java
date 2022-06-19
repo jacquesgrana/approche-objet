@@ -90,7 +90,6 @@ public class Model {
 		boolean isFileExists = Files.exists(path);
 		
 		if(!isFileExists || !isFile || !isReadable) {
-			// TODO affichage erreur ?
 			return false;
 		}
 		else {

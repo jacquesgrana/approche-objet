@@ -494,11 +494,11 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode chargée de peupler la liste des villes, des départements et des régions
-	 * Affiche le menu correspondant, met a jour le booléen isFileLoaded en appellant la méthode
+	 * Méthode chargée de peupler la liste des villes, des départements et des régions, 
+	 * Affiche le menu correspondant, met a jour le booléen isFileLoaded en appellant la méthode 
 	 * du modéle qui peuples les liste à partir du fichier .csv (fichier modifié pour que Lyon soit gérée), 
-	 * appelle la méthode de la vue qui affiche le nombre de villes crées,
-	 * et attend la saisie de 'c' pour revenir au menu principal
+	 * appelle la méthode de la vue qui affiche le nombre de villes crées, 
+	 * et attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param : scanner : pour gérer les saisies du clavier
 	 */
@@ -514,8 +514,10 @@ public class ControllerApp {
 		if(this.model.getIsFileLoaded()) {
 			this.vue.displayInfosDatas(this.model.getListVilles());
 		}
+		else {
+			this.vue.displayCSVNotLoaded();
+		}
 		this.waitForCToContinue(scanner);
-
 	}
 
    /**
@@ -534,22 +536,5 @@ public class ControllerApp {
 		}
 		while (choice != 'C' && choice != 'c');
 	}
-
-/*
-	public Model getModel() {
-		return model;
-	}
-
-	public void setModel(Model model) {
-		this.model = model;
-	}
-
-	public Vue getVue() {
-		return vue;
-	}
-
-	public void setVue(Vue vue) {
-		this.vue = vue;
-	}*/
 
 }

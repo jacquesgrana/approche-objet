@@ -375,8 +375,20 @@ public class Vue {
 		System.out.println("\n  Fin du programme");
 	}
 
+	/**
+	 * Méthode qui affiche le message de l'exception IOException. 
+	 * 
+	 * @param e : exception levée de type  IOException
+	 */
 	public void displayIOErrorMessage(IOException e) {
 		System.out.println("\n  Erreur pendant le chargement du fichier .csv : message : " + e.getMessage());
+	}
+
+	/**
+	 * Méthode qui affiche un message dans le cas où le chargement du fichier .csv n'est pas possible. 
+	 */
+	public void displayCSVNotLoaded() {
+		System.out.println("\n  Fichier .csv non chargé");
 	}
 
 }
