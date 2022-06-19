@@ -18,10 +18,10 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche le menu principal selon si les données ont été chargées 
-	 * (cf booléen isFileLoaded)
+	 * Méthode qui affiche le menu principal selon si les données ont été chargées ou pas
+	 * en fonction du booléen isFileLoaded. 
 	 * 
-	 * @param isFileLoaded
+	 * @param isFileLoaded : booléen qui indique si le fichier .csv a été chargé ou pas
 	 */
 	public void displayGeneralMenu(boolean isFileLoaded) {
 		System.out.println("\n\n\n\n");
@@ -55,7 +55,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche le menu du choix 0
+	 * Méthode qui affiche le menu du choix 0. 
 	 */
 	public void displayMenu00() {
 		System.out.println("\n\n\n\n");
@@ -70,7 +70,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 1
+	 * Méthode qui affiche le menu du choix 1. 
 	 */
 	public void displayMenu01() {
 		System.out.println("\n\n\n\n");
@@ -86,7 +86,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 2
+	 * Méthode qui affiche le menu du choix 2. 
 	 */
 	public void displayMenu02() {
 		System.out.println("\n\n\n\n");
@@ -102,7 +102,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 3
+	 * Méthode qui affiche le menu du choix 3. 
 	 */
 	public void displayMenu03() {
 		System.out.println("\n\n\n\n");
@@ -136,7 +136,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 4
+	 * Méthode qui affiche le menu du choix 4. 
 	 */
 	public void displayMenu04() {
 		System.out.println("\n\n\n\n");
@@ -150,7 +150,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 5
+	 * Méthode qui affiche le menu du choix 5. 
 	 */
 	public void displayMenu05() {
 		System.out.println("\n\n\n\n");
@@ -164,7 +164,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 6
+	 * Méthode qui affiche le menu du choix 6. 
 	 */
 	public void displayMenu06() {
 		System.out.println("\n\n\n\n");
@@ -181,7 +181,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 7
+	 * Méthode qui affiche le menu du choix 7. 
 	 */
 	public void displayMenu07() {
 		System.out.println("\n\n\n\n");
@@ -216,7 +216,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche le menu du choix 8
+	 * Méthode qui affiche le menu du choix 8. 
 	 */
 	public void displayMenu08() {
 		System.out.println("\n\n\n\n");
@@ -238,7 +238,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche le nombre de villes de la liste
+	 * Méthode qui affiche le nombre de villes de la liste. 
 	 * 
 	 * @param listVilles : liste des villes
 	 */
@@ -248,7 +248,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche 'Pas de ville à ce nom' et le nom choisi
+	 * Méthode qui affiche 'Pas de ville à ce nom' et le nom choisi. 
 	 * 
 	 * @param nom : nom choisi
 	 */
@@ -257,7 +257,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche 'Pas de département avec ce code' et le code choisi
+	 * Méthode qui affiche 'Pas de département avec ce code' et le code choisi. 
 	 * 
 	 * @param codeDpt : code choisi
 	 */
@@ -266,7 +266,7 @@ public class Vue {
 	}
 	
 	/**
-	 * Méthode qui affiche 'Pas de région avec ce code' et le code choisi
+	 * Méthode qui affiche 'Pas de région avec ce code' et le code choisi. 
 	 * 
 	 * @param codeRegion : code choisi
 	 */
@@ -274,19 +274,39 @@ public class Vue {
 		System.out.println("\n  Pas de région avec ce code : " + codeRegion);
 	}
 	
+	/**
+	 * Méthode qui affiche les infos d'une ville. 
+	 * 
+	 * @param ville : ville à afficher
+	 */
 	public void displayVille(Ville ville) {
 		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale() + " habitants");
 	}
 
-	public void displayPopDept(Departement dept) {
+	/**
+	 * Méthode qui affiche les infos d'un département. 
+	 * 
+	 * @param dept : département à afficher
+	 */
+	public void displayDept(Departement dept) {
 		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale() + " habitants");
 	}
 
-	public void displayPopRegion(Region region) {
+	/**
+	 * Méthode qui affiche les infos d'une région. 
+	 * 
+	 * @param region : région à afficher
+	 */
+	public void displayRegion(Region region) {
 		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + region.getPopulTotale() + " habitants");
 	}
 
-	public void displayTopTenRegionByPop(ArrayList<Region> listRegion) {
+	/**
+	 * Méthode qui affiche les dix premiers éléments de la liste des régions. 
+	 *  
+	 * @param listRegion : liste à afficher
+	 */
+	public void displayTopTenRegionList(ArrayList<Region> listRegion) {
 		int cpt = 1;
 		System.out.println();
 		for(Region region : listRegion) {
@@ -297,7 +317,12 @@ public class Vue {
 		}
 	}
 	
-	public void displayTopTenDeptByPop(ArrayList<Departement> listDept) {
+	/**
+	 * Méthode qui affiche les dix premiers éléments de la liste des départements. 
+	 *  
+	 * @param listDept : liste à afficher
+	 */
+	public void displayTopTenDeptList(ArrayList<Departement> listDept) {
 		int cpt = 1;
 		System.out.println();
 		for(Departement dept : listDept) {
@@ -308,7 +333,12 @@ public class Vue {
 		}
 	}
 	
-	public void displayTopTenPopVille(ArrayList<Ville> listToDisplay) {
+	/**
+	 * Méthode qui affiche les dix premiers éléments de la liste des villes. 
+	 *  
+	 * @param listDept : liste à afficher
+	 */
+	public void displayTopTenVilleList(ArrayList<Ville> listToDisplay) {
 		int cpt = 1;
 		System.out.println();
 		for(Ville ville : listToDisplay) {
@@ -319,14 +349,27 @@ public class Vue {
 		}
 	}
 
+	/**
+	 * Méthode qui affiche les infos d'un département. 
+	 * 
+	 * @param deptToDisplay : département à afficher
+	 */
 	public void displayDeptInfos(Departement deptToDisplay) {
 		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept());
 	}
 
+	/**
+	 * Méthode qui affiche les infos d'une région
+	 * 
+	 * @param regionToDisplay : région à afficher
+	 */
 	public void displayRegionInfos(Region regionToDisplay) {
-		System.out.println("\n  Région choisie: code : " + regionToDisplay.getCodeRegion() + " / nom : " + regionToDisplay.getNomRegion());
+		System.out.println("\n  Région choisie : code : " + regionToDisplay.getCodeRegion() + " / nom : " + regionToDisplay.getNomRegion());
 	}
 
+	/**
+	 * Méthode qui affiche le message de fin de l'application. 
+	 */
 	public void displayAppEnd() {
 		System.out.println("\n  Fin du programme");
 	}

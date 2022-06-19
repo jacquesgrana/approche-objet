@@ -1,5 +1,17 @@
 package fr.diginamic.recensement.model;
 
+/**
+ * Classe des objets ville. 
+ * 
+ * codeRegion : code de la région de la ville, 
+ * nomRegion : nom de la région de la ville, 
+ * codeDept : code du département de la ville, 
+ * codeCom : code de la commune, 
+ * nomCom : nom de la commune, 
+ * populTotale : population de la commune. 
+ * 
+ * @author jacques
+ */
 public class Ville {
 
 	private String codeRegion;
@@ -9,7 +21,16 @@ public class Ville {
 	private String nomCom;
 	private Long populTotale;
 	
-	
+	/**
+	 * Constructeur
+	 * 
+	 * @param codeRegion
+	 * @param nomRegion
+	 * @param codeDept
+	 * @param codeCom
+	 * @param nomCom
+	 * @param populTotale
+	 */
 	public Ville(String codeRegion, String nomRegion, String codeDept, String codeCom, String nomCom, Long populTotale) {
 		//super();
 		this.codeRegion = codeRegion;
@@ -20,6 +41,9 @@ public class Ville {
 		this.populTotale = populTotale;
 	}
 	
+	/**
+	 * Méthode qui renvoie un clone de l'objet courant. 
+	 */
 	public Ville clone() {
 		return new Ville(this.codeRegion, this.nomRegion, this.codeDept, this.codeCom, this.nomCom, this.populTotale);
 	}
