@@ -18,6 +18,8 @@ import fr.diginamic.recensement.vue.Vue;
  * Classe controlleur de l'application, utilise model et vue
  * gère les choix de l'utilisateur et appelle les méthodes correspondantes
  * 
+ * Le fichier .csv a été légèrement normalisé pour Lyon : remplacement des arrondissements de Lyon par une seule ligne pour Lyon avec les totaux correspondants.
+ * 
  * @see Model
  * @see Vue
  * @see Ville
@@ -207,7 +209,7 @@ public class ControllerApp {
 	 */
 	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		this.vue.displayMenu05();
-		this.generateTopTenDeptList(listVilles, listDpts);
+		this.generateAndDisplayTopTenDeptList(listVilles, listDpts);
 		this.waitForCToContinue(scanner);
 	}
 
@@ -222,7 +224,7 @@ public class ControllerApp {
 	 */
 	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
 		this.vue.displayMenu04();
-		this.generateTopTenRegionList(listVilles, listRegion);
+		this.generateAndDisplayTopTenRegionList(listVilles, listRegion);
 		this.waitForCToContinue(scanner);
 	}
 
@@ -279,7 +281,6 @@ public class ControllerApp {
 		this.waitForCToContinue(scanner);
 	}
 
-	// TODO probleme pour lyon --> modifier csv? -- FAIT - fichier csv modifié
 	/**
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la saisie du nom de la ville a traiter, 
@@ -411,16 +412,22 @@ public class ControllerApp {
 		}
 	}
 	
-	private void generateTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
+	/**
+	 * Méthode qui calcule les populations des départements de la liste en fonctions des villes de la liste, 
+	 * trie la liste des départements selon la population en ordre décroissant,
+	 * appelle la méthode de la vue qui affiche les dix premiers éléments de la liste des départements. 
+	 * 
+	 * @param listVilles liste des villes
+	 * @param listDpts liste des départements
+	 */
+	private void generateAndDisplayTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
 		for (Ville ville : listVilles) {
 			Departement deptToTest = new Departement(ville.getCodeDept(), 0L);
 			for (Departement dept : listDpts) {
 				if (dept.equals(deptToTest)) {
 					dept.setPopulTotale(dept.getPopulTotale() + ville.getPopulTotale());
 				}
-				
-			}
-				
+			}	
 		}
 		
 		ComparatorDptByPopDecr comparator = new ComparatorDptByPopDecr();
@@ -429,32 +436,36 @@ public class ControllerApp {
 		
 	}
 	
-	private void generateTopTenRegionList(ArrayList<Ville> listVilles, ArrayList<Region> listRegion) {
-		// boucle sur ville
+	/**
+	 * Méthode qui calcule les populations des régions de la liste en fonction des villes de la liste, 
+	 * trie la liste des régions selon la population en ordre décroissant,
+	 * appelle la méthode de la vue qui affiche les dix premiers éléments de la liste des régions. 
+	 * 
+	 * @param listVilles liste des villes
+	 * @param listRegion liste des régions
+	 */
+	private void generateAndDisplayTopTenRegionList(ArrayList<Ville> listVilles, ArrayList<Region> listRegion) {
 		for (Ville ville : listVilles) {
-			// construction objet region
 			Region regionToTest = new Region(ville.getCodeRegion(), ville.getNomRegion(), 0L);
-			// boucle sur region
 			for (Region region : listRegion) {
-				// si region ==
 				if (region.equals(regionToTest)) {
-					// augmente popul region
 					region.setPopulTotale(region.getPopulTotale() + ville.getPopulTotale());
 				}
-				
-			}
-				
+			}	
 		}
-		
-		// tri region selon population : appel comparatorPop
 		ComparatorRegionByPopDecr comparator = new ComparatorRegionByPopDecr();
 		Collections.sort(listRegion, comparator);
-		// appel fonction vue qui affiche les 10 1e elements de la liste (code : + nom : + pop :)
 		this.vue.displayTopTenRegionByPop(listRegion);
-		//this.vue.displayContinue();
-		
 	}
 	
+	/**
+	 * Méthode qui renvoie une objet région selon code passé en paramètre 
+	 * dont la population est calculée en fonction des populations des villes de la liste.
+	 * 
+	 * @param codeRegion code de la région utilisée
+	 * @param listVilles liste des villes
+	 * @return objet région dont la population a été mise à jour
+	 */
 	private Region calcPopRegion(String codeRegion, ArrayList<Ville> listVilles) {
 		Long popTotale = 0L;
 		Region regionToReturn = new Region(codeRegion, "", 0L);
@@ -468,6 +479,14 @@ public class ControllerApp {
 		return regionToReturn;
 	}
 	
+	/**
+	 * Méthode qui renvoie une objet département selon code passé en paramètre 
+	 * dont la population est calculée en fonction des populations des villes de la liste. 
+	 * 
+	 * @param codeDept code du département utilisé
+	 * @param listVilles liste des villes
+	 * @return objet département dont la population a été mise à jour
+	 */
 	private Departement calcPopDept(String codeDept, ArrayList<Ville> listVilles) {
 		Long popTotale = 0L;
 		Departement deptToReturn = new Departement(codeDept, 0L);
