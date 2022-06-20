@@ -41,7 +41,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * initialisation
+	 * Initialisation du controlleur. 
 	 */
 	public void init() {
 		this.model = new Model();

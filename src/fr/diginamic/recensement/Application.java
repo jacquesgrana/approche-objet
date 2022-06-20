@@ -11,8 +11,9 @@ public class Application {
 	 * instancie, initialise et lance le controlleur de l'application
 	 * 
 	 * @see ControllerApp
-	 * @param args : paramètre du main, 
+	 * @param args : paramètres du main, 
 	 * @version 1.0
+	 * @author jacques granarolo
 	 */
 	public static void main(String[] args){
 		ControllerApp controller = new ControllerApp();

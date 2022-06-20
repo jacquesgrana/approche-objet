@@ -32,10 +32,16 @@ public class Model {
 	private ArrayList<Departement> listDpts;
 	private ArrayList<Region> listRegions;
 	
+	/**
+	 * Constructeur générique. 
+	 */
 	public Model() {
 		
 	}
 	
+	/**
+	 * Initialisations des attributs. 
+	 */
 	public void init() {
 		this.scanner = new Scanner(System.in);
 		this.isFileLoaded = false;
