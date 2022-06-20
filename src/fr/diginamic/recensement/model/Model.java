@@ -54,7 +54,7 @@ public class Model {
 	}
 	
 	/**
-	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements initiale, 
+	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements initiale : 
 	 * puis lit le fichier .csv des départements de l'insee pour créer une liste de départements avec les noms et les codeRegion, 
 	 * enfin, complète la liste initiale en ajoutant les noms et les codeRegions. 
 	 *  
@@ -88,7 +88,7 @@ public class Model {
 	
 	
 	/**
-	 * Méthode qui teste si le fichier .csv de l'insee des departements existe, qu'il est un fichier et qu'il est accessible en lecture,
+	 * Méthode qui teste si le fichier .csv de l'insee des departements existe, qu'il est un fichier et qu'il est accessible en lecture : 
 	 * si oui : retourne une liste de String issue de readAllLines, 
 	 * si non : retourne null. 
 	 * 
@@ -126,7 +126,7 @@ public class Model {
 	}
 
 	/**
-	 * Méthode qui vérifie l'existence du ficher, renvoie faux si fichier pas ok, sinon charge les données dans la liste des villes, 
+	 * Méthode qui vérifie l'existence du ficher, renvoie faux si fichier pas ok, sinon charge les données dans la liste des villes : 
 	 * initialise les liste des régions et des départements, 
 	 * puis renvoie vrai.
 	 * 

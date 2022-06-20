@@ -18,7 +18,7 @@ public class Departement {
 	private Long populTotale;
 	
 	/**
-	 * Constructeur
+	 * Constructeur : 
 	 * 
 	 * @param codeDept : code du département, 
 	 * @param codeReg : code de la région du département, 

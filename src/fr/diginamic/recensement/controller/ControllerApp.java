@@ -50,7 +50,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode principale du contrôleur, 
+	 * Méthode principale du contrôleur : 
 	 * affiche le menu et appelle des méthodes selon les choix de l'utilisateur. 
 	 */
 	public void run(){
@@ -118,7 +118,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche le top10 des villes les plus peuplées de France. 
+	 * Méthode qui affiche le top10 des villes les plus peuplées de France :  
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * appelle la methode qui affiche la liste du top 10 des villes les plus peuplées de France, 
 	 * et attend la saisie de 'c' pour revenir au menu principal. 
@@ -133,7 +133,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche le top10 des villes les plus peuplées d'une région choisie. 
+	 * Méthode qui affiche le top10 des villes les plus peuplées d'une région choisie :  
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la choix d'un code de région par l'utilisateur, 
 	 * appelle la méthode qui génère la liste des communes de la région choisie par l'utilisateur, 
@@ -164,7 +164,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche le top10 des villes les plus peuplées d'un département choisi. 
+	 * Méthode qui affiche le top10 des villes les plus peuplées d'un département choisi : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la choix d'un code de département par l'utilisateur, 
 	 * appelle la méthode qui génère la liste des communes du département choisi par l'utilisateur, 
@@ -196,7 +196,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche le top10 des départements les plus peuplés de France. 
+	 * Méthode qui affiche le top10 des départements les plus peuplés de France : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * appelle la méthode qui affecte les populations de la liste des département et l'affiche, 
 	 * puis attend la saisie de 'c' pour revenir au menu principal. 
@@ -212,7 +212,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche le top10 des régions les plus peuplées de France. 
+	 * Méthode qui affiche le top10 des régions les plus peuplées de France : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * appelle la méthode qui affecte les populations de la liste des régions et l'affiche, 
 	 * puis attend la saisie de 'c' pour revenir au menu principal. 
@@ -228,7 +228,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche la population d'une région choisie. 
+	 * Méthode qui affiche la population d'une région choisie : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la saisie du code de la région à traiter, 
 	 * appelle la méthode qui calcule la population de la région choisie, 
@@ -256,7 +256,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche la population d'un département choisi. 
+	 * Méthode qui affiche la population d'un département choisi : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la saisie du code du département à traiter, 
 	 * appelle la méthode qui calcule la population du département choisi, 
@@ -285,7 +285,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui affiche la population d'une ville choisie. 
+	 * Méthode qui affiche la population d'une ville choisie : 
 	 * Appelle la fonction de la vue qui affiche le menu correspondant, 
 	 * attend la saisie du nom de la ville a traiter, 
 	 * passe la String saisie en majuscule, 
@@ -313,7 +313,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode qui renvoie la ville trouvée dans la liste à partir du nom passé en paramètre, 
+	 * Méthode qui renvoie la ville trouvée dans la liste à partir du nom passé en paramètre : 
 	 * boucle sur la liste des villes, 
 	 * si une ville correspond : renvoie un clone de la ville trouvée, 
 	 * sinon : renvoie null. 
@@ -332,7 +332,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui affiche le top 10 des villes les plus peuplées de France, 
+	 * Méthode qui affiche le top 10 des villes les plus peuplées de France : 
 	 * crée un objet comparator qui trie des villes selon la population en ordre décroissant, 
 	 * execute le tri sur la liste des villes, 
 	 * appelle la fonction de la vue qui affiche les dix premiers éléments de la liste.  
@@ -346,7 +346,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui renvoie un objet région de la liste des régions à partir du code passé en paramètre, 
+	 * Méthode qui renvoie un objet région de la liste des régions à partir du code passé en paramètre : 
 	 * boucle sur la liste des régions, 
 	 * si le code est trouvé dans la liste : retourne un clone de la région trouvée dans la liste, 
 	 * sinon : renvoie null. 
@@ -375,7 +375,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui renvoie la liste des villes de la région passée en paramètre, 
+	 * Méthode qui renvoie la liste des villes de la région passée en paramètre : 
 	 * si le code existe dans la liste des regions : construit la liste avec une boucle sur la liste des villes et retourne la liste, 
 	 * sinon : retourne null. 
 	 * 
@@ -401,7 +401,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui renvoie la liste des villes du département passé en paramètre, 
+	 * Méthode qui renvoie la liste des villes du département passé en paramètre : 
 	 * si le code existe dans la liste des départements : construit la liste avec une boucle sur la liste des villes et retourne la liste, 
 	 * sinon : retourne null. 
 	 * 
@@ -427,7 +427,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui calcule les populations des départements de la liste en fonctions des villes de la liste, 
+	 * Méthode qui calcule les populations des départements de la liste en fonctions des villes de la liste : 
 	 * trie la liste des départements selon la population en ordre décroissant, 
 	 * appelle la méthode de la vue qui affiche les dix premiers éléments de la liste des départements. 
 	 * 
@@ -451,7 +451,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui calcule les populations des régions de la liste en fonction des villes de la liste, 
+	 * Méthode qui calcule les populations des régions de la liste en fonction des villes de la liste : 
 	 * trie la liste des régions selon la population en ordre décroissant, 
 	 * appelle la méthode de la vue qui affiche les dix premiers éléments de la liste des régions. 
 	 * 
@@ -473,7 +473,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui renvoie une objet région selon code passé en paramètre, 
+	 * Méthode qui renvoie une objet région selon code passé en paramètre : 
 	 * dont la population est calculée en fonction des populations des villes de la liste. 
 	 * 
 	 * @param codeRegion : code de la région utilisée
@@ -494,7 +494,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui renvoie une objet département selon code passé en paramètre, 
+	 * Méthode qui renvoie une objet département selon code passé en paramètre : 
 	 * dont la population est calculée en fonction des populations des villes de la liste. 
 	 * 
 	 * @param codeDept : code du département utilisé
@@ -517,7 +517,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode chargée de peupler la liste des villes, des départements et des régions, 
+	 * Méthode chargée de peupler la liste des villes, des départements et des régions : 
 	 * Affiche le menu correspondant, met a jour le booléen isFileLoaded en appellant la méthode 
 	 * du modéle qui peuples les liste à partir du fichier .csv (fichier modifié pour que Lyon soit gérée), 
 	 * appelle la méthode de la vue qui affiche le nombre de villes crées, 
@@ -544,7 +544,7 @@ public class ControllerApp {
 	}
 
    /**
-	* Méthode qui attend la saisie de 'C' par l'utilisateur pour continuer. 
+	* Méthode qui attend la saisie de 'C' par l'utilisateur pour continuer : 
 	* Appelle la méthode la vue qui affiche le texte appelant à saisie 'c' pour continuer, 
  	* attend que la saisie soit correcte pour continuer. 
  	* 

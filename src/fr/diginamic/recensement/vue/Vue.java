@@ -238,7 +238,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche 'C' pour continuer
+	 * Méthode qui affiche 'C' pour continuer. 
 	 */
 	public void displayContinue() {
 		System.out.println("\n  'C' pour continuer :");
@@ -384,7 +384,7 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche les infos d'une région
+	 * Méthode qui affiche les infos d'une région. 
 	 * 
 	 * @param regionToDisplay : région à afficher
 	 */

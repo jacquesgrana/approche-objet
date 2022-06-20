@@ -16,7 +16,7 @@ public class Region {
 	private Long populTotale;
 	
 	/**
-	 * Constructeur
+	 * Constructeur : 
 	 * 
 	 * @param codeRegion : code de la région, 
 	 * @param nomRegion : nom de la région, 
