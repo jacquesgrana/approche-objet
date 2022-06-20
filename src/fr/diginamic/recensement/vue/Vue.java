@@ -324,7 +324,7 @@ public class Vue {
 		System.out.println();
 		for(Region region : listRegion) {
 			if (cpt <= 10) {
-				ToolsForFormatting.AlignLeft(30, "  " + region.getNomRegion());
+				ToolsForFormatting.alignLeft(30, "  " + region.getNomRegion());
 				System.out.println(": " + NumberFormat.getInstance(Locale.FRANCE).format(region.getPopulTotale()) + " habitants");
 			}
 			else {
@@ -344,7 +344,7 @@ public class Vue {
 		System.out.println();
 		for(Departement dept : listDept) {
 			if (cpt <= 10) {
-				ToolsForFormatting.AlignLeft(30, "  " + dept.getNomDept());
+				ToolsForFormatting.alignLeft(30, "  " + dept.getNomDept());
 				System.out.println(": " + NumberFormat.getInstance(Locale.FRANCE).format(dept.getPopulTotale()) + " habitants");
 			}
 			else {
@@ -364,7 +364,7 @@ public class Vue {
 		System.out.println();
 		for(Ville ville : listToDisplay) {
 			if (cpt <= 10) {
-				ToolsForFormatting.AlignLeft(30, "  " + ville.getNomCom());
+				ToolsForFormatting.alignLeft(30, "  " + ville.getNomCom());
 				System.out.println( ": " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
 			}
 			else {

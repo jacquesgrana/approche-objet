@@ -43,7 +43,7 @@ public class Model {
 	}
 	
 	/**
-	 * Initialisations des attributs. 
+	 * Initialisation des attributs. 
 	 */
 	public void init() {
 		this.scanner = new Scanner(System.in);

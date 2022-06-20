@@ -15,7 +15,7 @@ import fr.diginamic.recensement.model.Ville;
 import fr.diginamic.recensement.vue.Vue;
 
 /**
- * Classe controlleur de l'application, utilise model et vue
+ * Classe contrôleur de l'application, utilise model et vue
  * gère les choix de l'utilisateur et appelle les méthodes correspondantes
  * 
  * Le fichier .csv a été légèrement normalisé pour Lyon : remplacement des arrondissements de Lyon par une seule ligne pour Lyon avec les totaux correspondants. 
@@ -41,7 +41,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Méthode qui lnitialise le controlleur. 
+	 * Méthode qui lnitialise le contrôleur. 
 	 */
 	public void init() {
 		this.model = new Model();
@@ -50,7 +50,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode principale du controlleur, 
+	 * Méthode principale du contrôleur, 
 	 * affiche le menu et appelle des méthodes selon les choix de l'utilisateur. 
 	 */
 	public void run(){

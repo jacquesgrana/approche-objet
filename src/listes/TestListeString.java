@@ -44,7 +44,7 @@ public class TestListeString {
 			System.out.println(elem);
 		}
 		
-		Iterator iter = listString.iterator();
+		Iterator<String> iter = listString.iterator();
 		String value = "";
 		while(iter.hasNext()) {
 			value = (String) iter.next();

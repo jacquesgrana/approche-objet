@@ -1,21 +1,21 @@
 package fr.diginamic.recensement.model;
 
-//ToolsForFormatting.java
+//ToolsForFormatting.java - version allégée
 //Version 2.2 • Dernière mise à jour le 24 oct. 2015.
 //Copyright (c) 2012 - 2015 Christophe Marty. All rights reserved.
-// version allégée pour le TP16
 
 /**
  * Classe contenant deux méthodes public static qui aident pour l'affichage en console.
  * Une pour "aligner" le texte à gauche, 
- * une autre pour "aligner" le texte à droite.  
+ * une autre pour "aligner" le texte à droite. 
+ * Classe copiée et allégée pour le TP16.  
  */
 public class ToolsForFormatting {
 	
 	/**
 	 * Méthode qui affiche un espace. 
 	 */
-	static void PrintSpace()
+	static void printSpace()
 	{
 		System.out.print(" ");
 		return;
@@ -26,7 +26,7 @@ public class ToolsForFormatting {
 	 * 
 	 * @param n : nombre d'espaces à afficher
 	 */
-	static void PrintNSpaces(int n)
+	static void printNSpaces(int n)
 	{
 		while(n >= 10)
 		{
@@ -53,7 +53,7 @@ public class ToolsForFormatting {
 	 * @param TextLength : longueur du texte
 	 * @return nombre de caractères
 	 */
-	static int CalcNbrOfSpaces(int TotalLength, int TextLength)
+	static int calcNbrOfSpaces(int TotalLength, int TextLength)
 	{
 		if(TextLength > TotalLength)
 			return 0;
@@ -66,15 +66,15 @@ public class ToolsForFormatting {
 	 * @param totalLength : taille de la chaine affichée
 	 * @param Text : texte à afficher à gauche
 	 */
-	public static void AlignLeft(int totalLength, String Text)
+	public static void alignLeft(int totalLength, String Text)
 	{
 		System.out.print(Text);
 		if (Text != null) {
-			PrintNSpaces(CalcNbrOfSpaces(totalLength, Text.length()));
+			printNSpaces(calcNbrOfSpaces(totalLength, Text.length()));
 			return;
 		}
 		else {
-			PrintNSpaces(CalcNbrOfSpaces(totalLength, 4));
+			printNSpaces(calcNbrOfSpaces(totalLength, 4));
 			return;
 		}
 	}
@@ -85,9 +85,9 @@ public class ToolsForFormatting {
 	 * @param totalLength : taille de la chaine affichée
 	 * @param Text : texte à afficher à droite
 	 */
-	public static void AlignRight(int totalLength, String Text)
+	public static void alignRight(int totalLength, String Text)
 	{
-		PrintNSpaces(CalcNbrOfSpaces(totalLength, Text.length()));
+		printNSpaces(calcNbrOfSpaces(totalLength, Text.length()));
 		System.out.print(Text);
 		return;
 	}

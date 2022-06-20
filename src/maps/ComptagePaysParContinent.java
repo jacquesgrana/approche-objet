@@ -44,6 +44,7 @@ public class ComptagePaysParContinent {
 		ArrayList<Integer> listNbPays = new ArrayList<>();
 		for(String continent : listContinents) {
 			listNbPays.add(0);
+			System.out.println(continent.toString());
 		}
 		
 		for (Pays pays : listPays) {

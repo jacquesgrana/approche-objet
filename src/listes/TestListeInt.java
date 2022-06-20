@@ -1,7 +1,6 @@
 package listes;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TestListeInt {
 
