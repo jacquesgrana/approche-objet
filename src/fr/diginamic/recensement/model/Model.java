@@ -41,57 +41,49 @@ public class Model {
 	}
 	
 	/**
-	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements. 
+	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements initiale, 
+	 * puis lit le fichier .csv des départements de l'insee pour créer une liste de départements avec les noms et les codeRegion
+	 * enfin, complete la liste initiale en ajoutant les noms et les codeRegions.
+	 *  
 	 * @throws IOException 
-	 * 
 	 */
-	// TODO ajouter à la fin lecture du fichier des départements et ajout du nom et du codeRegion 
 	private void initListDpts() throws IOException {
-		//Departement firstDpt = new Departement(this.listVilles.get(0).getCodeDept(), 0L);
 		Departement deptToTest = null;
-		//this.listDpts.add(firstDpt);
 		for (Ville ville : this.listVilles) {
 			deptToTest = new Departement(ville.getCodeDept(), "", "", 0L);		
 			if(!this.listDpts.contains(deptToTest)) {
 				this.listDpts.add(deptToTest);
 			}			
 		}
-		// appel methode qui lit le fichier .csv des departements et renvoie un arraylist de String
 		List<String> listString = new ArrayList<>();
 		listString = readDeptFile();
-		//System.out.println("taille listString : " + listString.size());
-		
-		// npuvelle arrayList<Departement> newListDept
-		ArrayList<Departement> newListDept = new ArrayList<>();
-		// boucle sur arraylist string
+		ArrayList<Departement> listFromCsv = new ArrayList<>();
 		for (String line : listString) {
-			// extraction du code dept, du code region et du nom
 			String[] tabOneLine = line.split(",");
 			Departement dept = new Departement(tabOneLine[0], tabOneLine[1], tabOneLine[5], 0L);
-			newListDept.add(dept);
+			listFromCsv.add(dept);
 		}
 		
 		for (Departement deptList : this.listDpts) {
 			
-			for (Departement deptCsv : newListDept) {
+			for (Departement deptCsv : listFromCsv) {
 				if (deptList.equals(deptCsv)) {
 					deptList.setCodeReg(deptCsv.getCodeReg());
 					deptList.setNomDept(deptCsv.getNomDept());
 				}
 			}
-			
 		}
-			
-		/*
-		for (Departement d : this.listDpts) {
-			System.out.println(d.toString());
-		}
-		*/
-		
 	}
 	
 	
-	
+	/**
+	 * Méthode qui teste si le fichier .csv de l'insee des departements existe, qu'il est un fichier et qu'il est accessible en lecture,
+	 * si oui : retourne une liste de String issue de readAllLines, 
+	 * si non : retourne null. 
+	 * 
+	 * @return liste de String issue de readAllLines ou null. 
+	 * @throws IOException
+	 */
 	private List<String> readDeptFile() throws IOException {
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/departement_2022.csv");
 		boolean isFile = Files.isRegularFile(path);
@@ -133,8 +125,6 @@ public class Model {
 	 * @throws IOException
 	 */
 	public boolean loadDatasFromFile() throws IOException {
-		//System.out.println("\n  Chargement des données à partir du fichier");
-		
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement-modif-Lyon.csv");
 		boolean isFile = Files.isRegularFile(path);
 		boolean isReadable = Files.isReadable(path);
