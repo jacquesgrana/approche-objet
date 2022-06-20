@@ -18,9 +18,9 @@ public class Region {
 	/**
 	 * Constructeur
 	 * 
-	 * @param codeRegion
-	 * @param nomRegion
-	 * @param populTotale
+	 * @param codeRegion : code de la région, 
+	 * @param nomRegion : nom de la région, 
+	 * @param populTotale : population de la région. 
 	 */
 	public Region(String codeRegion, String nomRegion, Long populTotale) {
 		this.codeRegion = codeRegion;

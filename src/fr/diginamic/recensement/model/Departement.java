@@ -4,6 +4,8 @@ package fr.diginamic.recensement.model;
  * Classe des objets départements. 
  * 
  * codeDept : code du département de la ville, 
+ * codeReg : code de la région du département, 
+ * nomDept : nom du département, 
  * populTotale : population de la commune. 
  * 
  * @author jacques granarolo
@@ -18,8 +20,10 @@ public class Departement {
 	/**
 	 * Constructeur
 	 * 
-	 * @param codeDept
-	 * @param populTotale
+	 * @param codeDept : code du département de la ville, 
+	 * @param codeReg : code de la région du département, 
+	 * @param nomDept : nom du département, 
+	 * @param populTotale : population de la commune. 
 	 */
 	public Departement(String codeDept, String codeReg, String nomDept, Long populTotale) {
 		//super();

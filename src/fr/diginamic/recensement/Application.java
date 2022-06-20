@@ -11,11 +11,10 @@ public class Application {
 	 * instancie, initialise et lance le controlleur de l'application
 	 * 
 	 * @see ControllerApp
-	 * @param args
+	 * @param args : paramètre du main, 
 	 * @version 1.0
-	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		ControllerApp controller = new ControllerApp();
 		controller.init();
 		controller.run();

@@ -46,10 +46,10 @@ public class Model {
 	
 	/**
 	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements initiale, 
-	 * puis lit le fichier .csv des départements de l'insee pour créer une liste de départements avec les noms et les codeRegion
-	 * enfin, complete la liste initiale en ajoutant les noms et les codeRegions.
+	 * puis lit le fichier .csv des départements de l'insee pour créer une liste de départements avec les noms et les codeRegion, 
+	 * enfin, complète la liste initiale en ajoutant les noms et les codeRegions. 
 	 *  
-	 * @throws IOException : exception levée si erreur dans readDeptFile
+	 * @throws IOException : exception levée si erreur dans méthode readDeptFile
 	 */
 	private void initListDpts() throws IOException {
 		Departement deptToTest = null;

@@ -245,7 +245,9 @@ public class Vue {
 	}
 
 	/**
-	 * Méthode qui affiche le nombre de villes de la liste. 
+	 * Méthode qui affiche le nombre de villes de la liste des villes, 
+	 * le nombre de départements de la liste des départements 
+	 * et le nombre de régions de la liste des régions. 
 	 * 
 	 * @param listVilles : liste des villes
 	 * @param listDept : liste des départements

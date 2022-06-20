@@ -6,9 +6,9 @@ package fr.diginamic.recensement.model;
  * codeRegion : code de la région de la ville, 
  * nomRegion : nom de la région de la ville, 
  * codeDept : code du département de la ville, 
- * codeCom : code de la commune, 
- * nomCom : nom de la commune, 
- * populTotale : population de la commune. 
+ * codeCom : code de la ville, 
+ * nomCom : nom de la ville, 
+ * populTotale : population de la ville. 
  * 
  * @author jacques granarolo
  */
@@ -24,12 +24,12 @@ public class Ville {
 	/**
 	 * Constructeur
 	 * 
-	 * @param codeRegion
-	 * @param nomRegion
-	 * @param codeDept
-	 * @param codeCom
-	 * @param nomCom
-	 * @param populTotale
+	 * @param codeRegion : code de la région de la ville, 
+	 * @param nomRegion : nom de la région de la ville, 
+	 * @param codeDept : code du département de la ville, 
+	 * @param codeCom: code de la ville, 
+	 * @param nomCom : nom de la ville, 
+	 * @param populTotale : population de la ville. 
 	 */
 	public Ville(String codeRegion, String nomRegion, String codeDept, String codeCom, String nomCom, Long populTotale) {
 		//super();

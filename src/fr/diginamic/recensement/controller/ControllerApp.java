@@ -51,7 +51,7 @@ public class ControllerApp {
 
 	/**
 	 * Méthode principale de l'application, 
-	 * affiche le menu et appelle les méthodes selon les choix de l'utilisateur. 
+	 * affiche le menu et appelle des méthodes selon les choix de l'utilisateur. 
 	 */
 	public void run(){
 		boolean quit = false;
@@ -523,7 +523,7 @@ public class ControllerApp {
 	 * appelle la méthode de la vue qui affiche le nombre de villes crées, 
 	 * et attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
-	 * @param : scanner : pour gérer les saisies du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void loadDatasFromCSV(Scanner scanner) {
 		this.vue.displayMenu00();
