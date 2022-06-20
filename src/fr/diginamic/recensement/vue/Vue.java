@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Region;
+import fr.diginamic.recensement.model.ToolsForFormatting;
 import fr.diginamic.recensement.model.Ville;
 
 /**
@@ -19,11 +20,6 @@ public class Vue {
 	public Vue() {
 		
 	}
-	
-	/*
-	 * 
-	 * NumberFormat.getInstance(Locale.FRANCE).format(  votre nombre ici )
-	 */
 
 	/**
 	 * Méthode qui affiche le menu principal selon si les données ont été chargées ou pas
@@ -289,7 +285,6 @@ public class Vue {
 	 * @param ville : ville à afficher
 	 */
 	
-	//NumberFormat.getInstance(Locale.FRANCE).format(  votre nombre ici ) // ville.getPopulTotale()
 	public void displayVille(Ville ville) {
 		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
 	}
@@ -322,7 +317,8 @@ public class Vue {
 		System.out.println();
 		for(Region region : listRegion) {
 			if (cpt <= 10) {
-				System.out.println("  " + region.getNomRegion() + " : " + NumberFormat.getInstance(Locale.FRANCE).format(region.getPopulTotale()) + " habitants");
+				ToolsForFormatting.AlignLeft(30, "  " + region.getNomRegion());
+				System.out.println(": " + NumberFormat.getInstance(Locale.FRANCE).format(region.getPopulTotale()) + " habitants");
 			}
 			else {
 				break;
@@ -341,7 +337,8 @@ public class Vue {
 		System.out.println();
 		for(Departement dept : listDept) {
 			if (cpt <= 10) {
-				System.out.println("  " + dept.getNomDept() + " : " + NumberFormat.getInstance(Locale.FRANCE).format(dept.getPopulTotale()) + " habitants"); //+ dept.getCodeDept()  + " : " 
+				ToolsForFormatting.AlignLeft(30, "  " + dept.getNomDept());
+				System.out.println(": " + NumberFormat.getInstance(Locale.FRANCE).format(dept.getPopulTotale()) + " habitants");
 			}
 			else {
 				break;
@@ -360,7 +357,8 @@ public class Vue {
 		System.out.println();
 		for(Ville ville : listToDisplay) {
 			if (cpt <= 10) {
-				System.out.println("  " + ville.getNomCom() + " : " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
+				ToolsForFormatting.AlignLeft(30, "  " + ville.getNomCom());
+				System.out.println( ": " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
 			}
 			else {
 				break;
@@ -375,7 +373,7 @@ public class Vue {
 	 * @param deptToDisplay : département à afficher
 	 */
 	public void displayDeptInfos(Departement deptToDisplay) {
-		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept() + " nom : " + deptToDisplay.getNomDept());
+		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept() + " / nom : " + deptToDisplay.getNomDept());
 	}
 
 	/**
@@ -384,7 +382,7 @@ public class Vue {
 	 * @param regionToDisplay : région à afficher
 	 */
 	public void displayRegionInfos(Region regionToDisplay) {
-		System.out.println("\n  Région choisie : code : " + regionToDisplay.getCodeRegion() + " nom : " + regionToDisplay.getNomRegion());
+		System.out.println("\n  Région choisie : code : " + regionToDisplay.getCodeRegion() + " / nom : " + regionToDisplay.getNomRegion());
 	}
 
 	/**

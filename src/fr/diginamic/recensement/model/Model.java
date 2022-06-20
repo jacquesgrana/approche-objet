@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +16,11 @@ import java.util.Scanner;
  * listVilles : liste des villes, 
  * listDpts : liste des départements, 
  * listRegions : liste des régions. 
+ * 
+ * La liste des villes est générée à partir du fichier .csv du recensement, 
+ * la liste des départements est générée initialement à partir de la liste des villes, 
+ * puis complétée (pour ajouter le nom et le codeRegion) à partir du fichier .csv de l'insee pour les départements 
+ * et la liste des régions est générée à partir de la liste des villes. 
  * 
  * @author jacques granarolo
  */
@@ -29,15 +33,15 @@ public class Model {
 	private ArrayList<Region> listRegions;
 	
 	public Model() {
+		
+	}
+	
+	public void init() {
 		this.scanner = new Scanner(System.in);
 		this.isFileLoaded = false;
 		this.listVilles = new ArrayList<>();
 		this.listDpts = new ArrayList<>();
 		this.listRegions = new ArrayList<>();
-	}
-	
-	public void init() {
-		
 	}
 	
 	/**
@@ -63,9 +67,7 @@ public class Model {
 			Departement dept = new Departement(tabOneLine[0], tabOneLine[1], tabOneLine[5], 0L);
 			listFromCsv.add(dept);
 		}
-		
 		for (Departement deptList : this.listDpts) {
-			
 			for (Departement deptCsv : listFromCsv) {
 				if (deptList.equals(deptCsv)) {
 					deptList.setCodeReg(deptCsv.getCodeReg());
@@ -105,9 +107,7 @@ public class Model {
 	 * 
 	 */
 	private void initListRegions() {
-		Region firstRegion = new Region(this.listVilles.get(0).getCodeRegion(), this.listVilles.get(0).getNomRegion(), 0L);
 		Region regionToTest = null;
-		this.listRegions.add(firstRegion);
 		for (Ville ville : this.listVilles) {
 			regionToTest = new Region(ville.getCodeRegion(), ville.getNomRegion(), 0L);
 			if(!this.listRegions.contains(regionToTest)) {
@@ -129,7 +129,6 @@ public class Model {
 		boolean isFile = Files.isRegularFile(path);
 		boolean isReadable = Files.isReadable(path);
 		boolean isFileExists = Files.exists(path);
-		
 		if(!isFileExists || !isFile || !isReadable) {
 			return false;
 		}

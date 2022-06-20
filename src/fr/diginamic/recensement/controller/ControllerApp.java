@@ -45,10 +45,8 @@ public class ControllerApp {
 	public void init() {
 		this.model = new Model();
 		this.vue = new Vue();
-		this.model.init(); // TODO enlever, tout est fait dans le constructeur de Model
+		this.model.init();
 	}
-	
-	// TODO gestion des exceptions !!!
 
 	/**
 	 * méthode principale de l'application, 
