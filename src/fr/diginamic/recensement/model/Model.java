@@ -22,6 +22,9 @@ import java.util.Scanner;
  * puis complétée (pour ajouter le nom et le codeRegion) à partir du fichier .csv de l'insee pour les départements 
  * et la liste des régions est générée à partir de la liste des villes. 
  * 
+ * @see Ville
+ * @see Departement
+ * @see Region
  * @author jacques granarolo
  */
 public class Model {

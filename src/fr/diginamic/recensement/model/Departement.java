@@ -20,10 +20,10 @@ public class Departement {
 	/**
 	 * Constructeur
 	 * 
-	 * @param codeDept : code du département de la ville, 
+	 * @param codeDept : code du département, 
 	 * @param codeReg : code de la région du département, 
 	 * @param nomDept : nom du département, 
-	 * @param populTotale : population de la commune. 
+	 * @param populTotale : population du département. 
 	 */
 	public Departement(String codeDept, String codeReg, String nomDept, Long populTotale) {
 		//super();

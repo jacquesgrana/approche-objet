@@ -18,7 +18,7 @@ import fr.diginamic.recensement.model.Ville;
 public class Vue {
 	
 	/**
-	 * Constructeur
+	 * Constructeur générique.
 	 */
 	public Vue() {
 		

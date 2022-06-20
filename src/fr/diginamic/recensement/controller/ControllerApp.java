@@ -41,7 +41,7 @@ public class ControllerApp {
 	}
 	
 	/**
-	 * Initialisation du controlleur. 
+	 * Méthode qui lnitialise le controlleur. 
 	 */
 	public void init() {
 		this.model = new Model();
@@ -50,7 +50,7 @@ public class ControllerApp {
 	}
 
 	/**
-	 * Méthode principale de l'application, 
+	 * Méthode principale du controlleur, 
 	 * affiche le menu et appelle des méthodes selon les choix de l'utilisateur. 
 	 */
 	public void run(){
@@ -124,7 +124,7 @@ public class ControllerApp {
 	 * et attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param listVilles : liste des villes à traiter
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayTopTenPopVilleFrance(ArrayList<Ville> listVilles, Scanner scanner) {
 		this.vue.displayMenu08();
@@ -143,7 +143,7 @@ public class ControllerApp {
 	 * 
 	 * @param listVilles : liste des villes à traiter
 	 * @param listRegions : liste des régions collectées
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayTopTenPopVilleByRegion(ArrayList<Ville> listVilles, ArrayList<Region> listRegions, Scanner scanner) {
 		this.vue.displayMenu07();
@@ -174,7 +174,7 @@ public class ControllerApp {
 	 * 
 	 * @param listVilles : liste des villes à traiter
 	 * @param listDpts : liste des départements collectés
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayTopTenPopVilleByDept(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		this.vue.displayMenu06();
@@ -203,7 +203,7 @@ public class ControllerApp {
 	 * 
 	 * @param listVilles : liste des villes à traiter
 	 * @param listDpts : liste des départements collectés
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayTopTenDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts, Scanner scanner) {
 		this.vue.displayMenu05();
@@ -219,7 +219,7 @@ public class ControllerApp {
 	 * 
 	 * @param listVilles : liste des villes à traiter
 	 * @param listRegion : liste des départements collectés
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayTopTenRegionPop(ArrayList<Ville> listVilles, ArrayList<Region> listRegion, Scanner scanner) {
 		this.vue.displayMenu04();
@@ -237,7 +237,7 @@ public class ControllerApp {
 	 * puis attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param listVilles : liste des villes à traiter
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayRegionPop(ArrayList<Ville> listVilles, Scanner scanner) {
 		this.vue.displayMenu03();
@@ -265,7 +265,7 @@ public class ControllerApp {
 	 * puis attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param listVilles : liste des villes à traiter
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDepts, Scanner scanner) {
 		this.vue.displayMenu02();
@@ -295,7 +295,7 @@ public class ControllerApp {
 	 * puis attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param listVilles : liste des villes à traiter
-	 * @param scanner : pour la gestion du clavier
+	 * @param scanner : pour gérer les saisies du clavier
 	 */
 	private void searchAndDisplayVille(ArrayList<Ville> listVilles, Scanner scanner) {
 		this.vue.displayMenu01();
@@ -548,7 +548,7 @@ public class ControllerApp {
 	* Appelle la méthode la vue qui affiche le texte appelant à saisie 'c' pour continuer, 
  	* attend que la saisie soit correcte pour continuer. 
  	* 
- 	* @param scanner : pour la gestion du clavier
+ 	* @param scanner : pour gérer les saisies du clavier
  	*/
 	private void waitForCToContinue(Scanner scanner) {
 		char choice;
