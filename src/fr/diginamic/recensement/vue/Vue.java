@@ -396,7 +396,7 @@ public class Vue {
 	 * Méthode qui affiche le message de fin de l'application. 
 	 */
 	public void displayAppEnd() {
-		System.out.println("\n  Fin du programme");
+		System.out.println("\n  Fin du programme.");
 	}
 
 	/**
