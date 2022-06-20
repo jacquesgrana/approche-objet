@@ -38,7 +38,7 @@ public class ControllerApp {
 	public ControllerApp() {
 
 	}
-
+	
 	/**
 	 * initialisation
 	 */
@@ -78,7 +78,7 @@ public class ControllerApp {
 				break;
 			case '2' :
 				if (model.getIsFileLoaded()) {
-					this.searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getScanner());
+					this.searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '3' :
@@ -178,7 +178,8 @@ public class ControllerApp {
 		this.vue.displayMenu06();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
-		Departement deptToTest = new Departement(choiceString, 0L);
+		Departement deptToTest = new Departement(choiceString, "", "", 0L);
+		deptToTest = findAndReturnDept(deptToTest, this.model.getListDpts());
 		ArrayList<Ville> listVilleDept = this.generateVilleByDeptList(deptToTest, listVilles, listDpts);
 		if (listVilleDept == null) {
 			this.vue.displayDeptNotFound(choiceString);
@@ -260,12 +261,14 @@ public class ControllerApp {
 	 * @param listVilles : liste des villes à traiter
 	 * @param scanner : pour la gestion du clavier
 	 */
-	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, Scanner scanner) {
+	private void searchAndDisplayDeptPop(ArrayList<Ville> listVilles, ArrayList<Departement> listDepts, Scanner scanner) {
 		this.vue.displayMenu02();
 		String choiceString = scanner.next();
 		choiceString = choiceString.toUpperCase();
 		Departement dept = this.calcPopDept(choiceString, listVilles);
 		Long popDept = dept.getPopulTotale();
+		dept = findAndReturnDept(dept, listDepts);
+		dept.setPopulTotale(popDept);
 		if(popDept > 0) {
 			this.vue.displayDept(dept);
 		}
@@ -354,6 +357,16 @@ public class ControllerApp {
 		return null;
 	}
 	
+	private Departement findAndReturnDept(Departement deptToTest, ArrayList<Departement> listDepts) {
+		for (Departement dept : listDepts) {
+			if (dept.equals(deptToTest)) {
+				Departement deptToReturn = dept.clone();
+				return deptToReturn;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Méthode qui renvoie la liste des villes de la région passée en paramètre,
 	 * si le code existe dans la liste des regions : construit la liste avec une boucle sur la liste des villes et retourne la liste, 
@@ -416,7 +429,7 @@ public class ControllerApp {
 	 */
 	private void generateAndDisplayTopTenDeptList(ArrayList<Ville> listVilles, ArrayList<Departement> listDpts) {
 		for (Ville ville : listVilles) {
-			Departement deptToTest = new Departement(ville.getCodeDept(), 0L);
+			Departement deptToTest = new Departement(ville.getCodeDept(), "", "", 0L);
 			for (Departement dept : listDpts) {
 				if (dept.equals(deptToTest)) {
 					dept.setPopulTotale(dept.getPopulTotale() + ville.getPopulTotale());
@@ -483,13 +496,16 @@ public class ControllerApp {
 	 */
 	private Departement calcPopDept(String codeDept, ArrayList<Ville> listVilles) {
 		Long popTotale = 0L;
-		Departement deptToReturn = new Departement(codeDept, 0L);
+		String codeRegion = "";
+		Departement deptToReturn = new Departement(codeDept, "", "", 0L);
 		for (Ville ville : listVilles) {
 			if (ville.getCodeDept().toUpperCase().equals(codeDept)) {
 				popTotale += ville.getPopulTotale();
+				codeRegion = ville.getCodeRegion();
 			}
 		}
 		deptToReturn.setPopulTotale(popTotale);
+		deptToReturn.setCodeReg(codeRegion);
 		return deptToReturn;
 	}
 	
@@ -512,7 +528,7 @@ public class ControllerApp {
 			this.vue.displayIOErrorMessage(e);
 		}
 		if(this.model.getIsFileLoaded()) {
-			this.vue.displayInfosDatas(this.model.getListVilles());
+			this.vue.displayInfosDatas(this.model.getListVilles(), this.model.getListDpts(), this.model.getListRegions());
 		}
 		else {
 			this.vue.displayCSVNotLoaded();

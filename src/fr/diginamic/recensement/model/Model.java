@@ -42,21 +42,72 @@ public class Model {
 	
 	/**
 	 * Méthode qui collecte les départements depuis la liste des villes et construit la liste des départements. 
+	 * @throws IOException 
 	 * 
 	 */
-	private void initListDpts() {
-		Departement firstDpt = new Departement(this.listVilles.get(0).getCodeDept(), 0L);
+	// TODO ajouter à la fin lecture du fichier des départements et ajout du nom et du codeRegion 
+	private void initListDpts() throws IOException {
+		//Departement firstDpt = new Departement(this.listVilles.get(0).getCodeDept(), 0L);
 		Departement deptToTest = null;
-		this.listDpts.add(firstDpt);
+		//this.listDpts.add(firstDpt);
 		for (Ville ville : this.listVilles) {
-			deptToTest = new Departement(ville.getCodeDept(), 0L);		
+			deptToTest = new Departement(ville.getCodeDept(), "", "", 0L);		
 			if(!this.listDpts.contains(deptToTest)) {
 				this.listDpts.add(deptToTest);
 			}			
-		}		
+		}
+		// appel methode qui lit le fichier .csv des departements et renvoie un arraylist de String
+		List<String> listString = new ArrayList<>();
+		listString = readDeptFile();
+		//System.out.println("taille listString : " + listString.size());
+		
+		// npuvelle arrayList<Departement> newListDept
+		ArrayList<Departement> newListDept = new ArrayList<>();
+		// boucle sur arraylist string
+		for (String line : listString) {
+			// extraction du code dept, du code region et du nom
+			String[] tabOneLine = line.split(",");
+			Departement dept = new Departement(tabOneLine[0], tabOneLine[1], tabOneLine[5], 0L);
+			newListDept.add(dept);
+		}
+		
+		for (Departement deptList : this.listDpts) {
+			
+			for (Departement deptCsv : newListDept) {
+				if (deptList.equals(deptCsv)) {
+					deptList.setCodeReg(deptCsv.getCodeReg());
+					deptList.setNomDept(deptCsv.getNomDept());
+				}
+			}
+			
+		}
+			
+		/*
+		for (Departement d : this.listDpts) {
+			System.out.println(d.toString());
+		}
+		*/
+		
 	}
 	
-	// TODO paramètres ?
+	
+	
+	private List<String> readDeptFile() throws IOException {
+		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/departement_2022.csv");
+		boolean isFile = Files.isRegularFile(path);
+		boolean isReadable = Files.isReadable(path);
+		boolean isFileExists = Files.exists(path);
+		
+		if(!isFileExists || !isFile || !isReadable) {
+			return null;
+		}
+		else {
+			List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+			lines.remove(0);
+			return lines;
+		}
+	}
+
 	/**
 	 * Méthode qui collecte les régions depuis la liste des villes et construit la liste des régions. 
 	 * 
@@ -82,7 +133,7 @@ public class Model {
 	 * @throws IOException
 	 */
 	public boolean loadDatasFromFile() throws IOException {
-		System.out.println("\n  Chargement des données à partir du fichier");
+		//System.out.println("\n  Chargement des données à partir du fichier");
 		
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement-modif-Lyon.csv");
 		boolean isFile = Files.isRegularFile(path);

@@ -1,7 +1,9 @@
 package fr.diginamic.recensement.vue;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import fr.diginamic.recensement.model.Departement;
 import fr.diginamic.recensement.model.Region;
@@ -17,6 +19,11 @@ public class Vue {
 	public Vue() {
 		
 	}
+	
+	/*
+	 * 
+	 * NumberFormat.getInstance(Locale.FRANCE).format(  votre nombre ici )
+	 */
 
 	/**
 	 * Méthode qui affiche le menu principal selon si les données ont été chargées ou pas
@@ -243,9 +250,10 @@ public class Vue {
 	 * 
 	 * @param listVilles : liste des villes
 	 */
-	public void displayInfosDatas(ArrayList<Ville> listVilles) {
+	public void displayInfosDatas(ArrayList<Ville> listVilles, ArrayList<Departement> listDept, ArrayList<Region> listRegion) {
 		System.out.println("\n  Nombre de communes récupérées dans la liste : " + listVilles.size());
-		
+		System.out.println("  Nombre de départements récupérés dans la liste : " + listDept.size());
+		System.out.println("  Nombre de régions récupérées dans la liste : " + listRegion.size());
 	}
 
 	/**
@@ -280,8 +288,10 @@ public class Vue {
 	 * 
 	 * @param ville : ville à afficher
 	 */
+	
+	//NumberFormat.getInstance(Locale.FRANCE).format(  votre nombre ici ) // ville.getPopulTotale()
 	public void displayVille(Ville ville) {
-		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + ville.getPopulTotale() + " habitants");
+		System.out.println("\n  Nom : " + ville.getNomCom() + " / population : " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
 	}
 
 	/**
@@ -290,7 +300,7 @@ public class Vue {
 	 * @param dept : département à afficher
 	 */
 	public void displayDept(Departement dept) {
-		System.out.println("\n  Code du département : " + dept.getCodeDept() + " / population : " + dept.getPopulTotale() + " habitants");
+		System.out.println("\n  Code du département : " + dept.getCodeDept()  + " / nom : " + dept.getNomDept() + " / population : " + NumberFormat.getInstance(Locale.FRANCE).format(dept.getPopulTotale()) + " habitants");
 	}
 
 	/**
@@ -299,7 +309,7 @@ public class Vue {
 	 * @param region : région à afficher
 	 */
 	public void displayRegion(Region region) {
-		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + region.getPopulTotale() + " habitants");
+		System.out.println("\n  Nom de la région : " + region.getNomRegion() + " / Code de la région : " + region.getCodeRegion() + " / population : " + NumberFormat.getInstance(Locale.FRANCE).format(region.getPopulTotale()) + " habitants");
 	}
 
 	/**
@@ -312,7 +322,10 @@ public class Vue {
 		System.out.println();
 		for(Region region : listRegion) {
 			if (cpt <= 10) {
-				System.out.println("  " + region.getNomRegion() + " : " + region.getPopulTotale() + " habitants");
+				System.out.println("  " + region.getNomRegion() + " : " + NumberFormat.getInstance(Locale.FRANCE).format(region.getPopulTotale()) + " habitants");
+			}
+			else {
+				break;
 			}
 			cpt++;
 		}
@@ -328,7 +341,10 @@ public class Vue {
 		System.out.println();
 		for(Departement dept : listDept) {
 			if (cpt <= 10) {
-				System.out.println("  " + dept.getCodeDept() + " : " + dept.getPopulTotale() + " habitants");
+				System.out.println("  " + dept.getCodeDept()  + " : " + dept.getNomDept() + " : " + NumberFormat.getInstance(Locale.FRANCE).format(dept.getPopulTotale()) + " habitants");
+			}
+			else {
+				break;
 			}
 			cpt++;
 		}
@@ -344,7 +360,10 @@ public class Vue {
 		System.out.println();
 		for(Ville ville : listToDisplay) {
 			if (cpt <= 10) {
-				System.out.println("  " + ville.getNomCom() + " / " + ville.getPopulTotale() + " habitants");
+				System.out.println("  " + ville.getNomCom() + " / " + NumberFormat.getInstance(Locale.FRANCE).format(ville.getPopulTotale()) + " habitants");
+			}
+			else {
+				break;
 			}
 			cpt++;
 		}
@@ -356,7 +375,7 @@ public class Vue {
 	 * @param deptToDisplay : département à afficher
 	 */
 	public void displayDeptInfos(Departement deptToDisplay) {
-		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept());
+		System.out.println("\n  Département choisi : code : " + deptToDisplay.getCodeDept() + " nom : " + deptToDisplay.getNomDept());
 	}
 
 	/**

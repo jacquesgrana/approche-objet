@@ -12,15 +12,13 @@ public class Application {
 	 * 
 	 * @see ControllerApp
 	 * @param args
+	 * @version 1.0
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		
 		ControllerApp controller = new ControllerApp();
-		
 		controller.init();
 		controller.run();
-
 	}
 
 }

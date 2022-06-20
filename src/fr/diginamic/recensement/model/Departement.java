@@ -8,8 +8,11 @@ package fr.diginamic.recensement.model;
  * 
  * @author jacques granarolo
  */
+// TODO ajouter attributs : codeReg et nomDept
 public class Departement {
 	private String codeDept;
+	private String codeReg;
+	private String nomDept;
 	private Long populTotale;
 	
 	/**
@@ -18,9 +21,11 @@ public class Departement {
 	 * @param codeDept
 	 * @param populTotale
 	 */
-	public Departement(String codeDept, Long populTotale) {
+	public Departement(String codeDept, String codeReg, String nomDept, Long populTotale) {
 		//super();
 		this.codeDept = codeDept;
+		this.codeReg = codeReg;
+		this.nomDept = nomDept;
 		this.populTotale = populTotale;
 	}
 	
@@ -28,12 +33,12 @@ public class Departement {
 	 * Méthode qui renvoie un clone de l'objet courant. 
 	 */
 	public Departement clone() {
-		return new Departement(this.codeDept, this.populTotale);
+		return new Departement(this.codeDept, this.codeReg, this.nomDept, this.populTotale);
 	}
 
 	@Override
 	public String toString() {
-		return "codeDept : " + this.codeDept + " / populTotale : " + this.populTotale;
+		return "codeDept : " + this.codeDept + " / codeRegion : " + this.codeReg + " / nomDept : " + this.nomDept + " / populTotale : " + this.populTotale;
 	}
 	
 	/**
@@ -52,6 +57,22 @@ public class Departement {
 
 	public void setCodeDept(String codeDept) {
 		this.codeDept = codeDept;
+	}
+
+	public String getCodeReg() {
+		return codeReg;
+	}
+
+	public void setCodeReg(String codeReg) {
+		this.codeReg = codeReg;
+	}
+
+	public String getNomDept() {
+		return nomDept;
+	}
+
+	public void setNomDept(String nomDept) {
+		this.nomDept = nomDept;
 	}
 
 	public Long getPopulTotale() {
