@@ -49,7 +49,7 @@ public class Model {
 	 * puis lit le fichier .csv des départements de l'insee pour créer une liste de départements avec les noms et les codeRegion
 	 * enfin, complete la liste initiale en ajoutant les noms et les codeRegions.
 	 *  
-	 * @throws IOException 
+	 * @throws IOException : exception levée si erreur dans readDeptFile
 	 */
 	private void initListDpts() throws IOException {
 		Departement deptToTest = null;
@@ -84,7 +84,7 @@ public class Model {
 	 * si non : retourne null. 
 	 * 
 	 * @return liste de String issue de readAllLines ou null. 
-	 * @throws IOException
+	 * @throws IOException exception levée si erreur dans readAllLines
 	 */
 	private List<String> readDeptFile() throws IOException {
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/departement_2022.csv");
@@ -122,7 +122,7 @@ public class Model {
 	 * puis renvoie vrai.
 	 * 
 	 * @return vrai si fichier ok et chargé, sinon faux
-	 * @throws IOException
+	 * @throws IOException exception levée si erreur dans readAllLines
 	 */
 	public boolean loadDatasFromFile() throws IOException {
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement-modif-Lyon.csv");

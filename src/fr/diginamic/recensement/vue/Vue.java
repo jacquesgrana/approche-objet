@@ -17,6 +17,9 @@ import fr.diginamic.recensement.model.Ville;
  */
 public class Vue {
 	
+	/**
+	 * Constructeur
+	 */
 	public Vue() {
 		
 	}
@@ -234,7 +237,7 @@ public class Vue {
 		System.out.println("  **********************************************");	
 	}
 
-	/*
+	/**
 	 * Méthode qui affiche 'C' pour continuer
 	 */
 	public void displayContinue() {
@@ -245,6 +248,8 @@ public class Vue {
 	 * Méthode qui affiche le nombre de villes de la liste. 
 	 * 
 	 * @param listVilles : liste des villes
+	 * @param listDept : liste des départements
+	 * @param listRegion : liste des régions
 	 */
 	public void displayInfosDatas(ArrayList<Ville> listVilles, ArrayList<Departement> listDept, ArrayList<Region> listRegion) {
 		System.out.println("\n  Nombre de communes récupérées dans la liste : " + listVilles.size());
@@ -350,7 +355,7 @@ public class Vue {
 	/**
 	 * Méthode qui affiche les dix premiers éléments de la liste des villes. 
 	 *  
-	 * @param listDept : liste à afficher
+	 * @param listToDisplay : liste à afficher
 	 */
 	public void displayTopTenVilleList(ArrayList<Ville> listToDisplay) {
 		int cpt = 1;
