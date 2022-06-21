@@ -3,7 +3,7 @@ package fr.diginamic.recensement.model;
 import java.util.Comparator;
 
 /**
- * Comparator d'objets Departement selon la population en ordre décroissant
+ * Comparator d'objets Departement selon la population en ordre décroissant. 
  * 
  * @see Departement
  * @author jacques granarolo

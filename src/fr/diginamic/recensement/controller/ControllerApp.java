@@ -57,7 +57,7 @@ public class ControllerApp {
 		boolean quit = false;
 		char choice = 'X';
 		do {
-			this.vue.displayGeneralMenu(this.model.getIsFileLoaded());
+			this.vue.displayGeneralMenu(this.model.getisFilesLoaded());
 			String choiceString = this.model.getScanner().next();
 			choice = choiceString.charAt(0);
 
@@ -66,47 +66,47 @@ public class ControllerApp {
 				quit = true;
 			break;
 			case '0' :
-				if (!model.getIsFileLoaded()) {
+				if (!model.getisFilesLoaded()) {
 					this.loadDatasFromCSV(this.model.getScanner());
 				}
 				break;
 			case '1' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayVille(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			case '2' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '3' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayRegionPop(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
 			case '4' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayTopTenRegionPop(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
 				}
 				break;
 			case '5' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayTopTenDeptPop(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '6' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayTopTenPopVilleByDept(this.model.getListVilles(), this.model.getListDpts(), this.model.getScanner());
 				}
 				break;
 			case '7' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayTopTenPopVilleByRegion(this.model.getListVilles(), this.model.getListRegions(), this.model.getScanner());
 				}
 				break;
 			case '8' :
-				if (model.getIsFileLoaded()) {
+				if (model.getisFilesLoaded()) {
 					this.searchAndDisplayTopTenPopVilleFrance(this.model.getListVilles(), this.model.getScanner());
 				}
 				break;
@@ -518,9 +518,9 @@ public class ControllerApp {
 	
 	/**
 	 * Méthode chargée de peupler la liste des villes, des départements et des régions : 
-	 * Affiche le menu correspondant, met a jour le booléen isFileLoaded en appellant la méthode 
+	 * Affiche le menu correspondant, met a jour le booléen isFilesLoaded en appellant la méthode 
 	 * du modéle qui peuples les liste à partir du fichier .csv (fichier modifié pour que Lyon soit gérée), 
-	 * appelle la méthode de la vue qui affiche le nombre de villes crées, 
+	 * appelle la méthode de la vue qui affiche le nombre de villes, de départements et de regions créés, 
 	 * et attend la saisie de 'c' pour revenir au menu principal. 
 	 * 
 	 * @param scanner : pour gérer les saisies du clavier
@@ -528,13 +528,13 @@ public class ControllerApp {
 	private void loadDatasFromCSV(Scanner scanner) {
 		this.vue.displayMenu00();
 		try {
-			this.model.setIsFileLoaded(this.model.loadDatasFromFile());
+			this.model.setisFilesLoaded(this.model.loadDatasFromFiles());
 		} 
 		catch (IOException e) {
-			this.model.setIsFileLoaded(false);
+			this.model.setisFilesLoaded(false);
 			this.vue.displayIOErrorMessage(e);
 		}
-		if(this.model.getIsFileLoaded()) {
+		if(this.model.getisFilesLoaded()) {
 			this.vue.displayInfosDatas(this.model.getListVilles(), this.model.getListDpts(), this.model.getListRegions());
 		}
 		else {

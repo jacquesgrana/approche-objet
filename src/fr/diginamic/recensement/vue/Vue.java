@@ -28,9 +28,9 @@ public class Vue {
 	 * Méthode qui affiche le menu principal selon si les données ont été chargées ou pas
 	 * en fonction du booléen isFileLoaded. 
 	 * 
-	 * @param isFileLoaded : booléen qui indique si le fichier .csv a été chargé ou pas
+	 * @param isFileLoaded : booléen qui indique si les fichiers .csv ont été chargés ou pas
 	 */
-	public void displayGeneralMenu(boolean isFileLoaded) {
+	public void displayGeneralMenu(boolean isFilesLoaded) {
 		System.out.println("\n\n\n\n");
 		System.out.println("  **********************************************");
 		System.out.println("  *                                            *");
@@ -38,7 +38,7 @@ public class Vue {
 		System.out.println("  *                                            *");
 		System.out.println("  * Menu :                                     *");
 		System.out.println("  *                                            *");
-		if (!isFileLoaded) {
+		if (!isFilesLoaded) {
 			System.out.println("  * 0 : Initialisation des données             *");
 		} 
 		else {
@@ -412,7 +412,7 @@ public class Vue {
 	 * Méthode qui affiche un message dans le cas où le chargement du fichier .csv n'est pas possible. 
 	 */
 	public void displayCSVNotLoaded() {
-		System.out.println("\n  Fichier .csv non chargé");
+		System.out.println("\n  Fichier .csv non chargé.");
 	}
 
 }

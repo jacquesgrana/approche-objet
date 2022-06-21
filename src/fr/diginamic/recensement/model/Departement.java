@@ -6,7 +6,7 @@ package fr.diginamic.recensement.model;
  * codeDept : code du département de la ville, 
  * codeReg : code de la région du département, 
  * nomDept : nom du département, 
- * populTotale : population de la commune. 
+ * populTotale : population du département. 
  * 
  * @author jacques granarolo
  */

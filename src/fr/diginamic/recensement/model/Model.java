@@ -30,7 +30,7 @@ import java.util.Scanner;
 public class Model {
 	
 	private Scanner scanner;
-	private boolean isFileLoaded;
+	private boolean isFilesLoaded;
 	private ArrayList<Ville> listVilles;
 	private ArrayList<Departement> listDpts;
 	private ArrayList<Region> listRegions;
@@ -47,7 +47,7 @@ public class Model {
 	 */
 	public void init() {
 		this.scanner = new Scanner(System.in);
-		this.isFileLoaded = false;
+		this.isFilesLoaded = false;
 		this.listVilles = new ArrayList<>();
 		this.listDpts = new ArrayList<>();
 		this.listRegions = new ArrayList<>();
@@ -133,7 +133,7 @@ public class Model {
 	 * @return vrai si fichier ok et chargé, sinon faux
 	 * @throws IOException exception levée si erreur dans readAllLines
 	 */
-	public boolean loadDatasFromFile() throws IOException {
+	public boolean loadDatasFromFiles() throws IOException {
 		Path path = Paths.get("/home/jacques/springToolsSuite/workSTS/approche-objet/src/fr/diginamic/recensement/files/recensement-modif-Lyon.csv");
 		boolean isFile = Files.isRegularFile(path);
 		boolean isReadable = Files.isReadable(path);
@@ -163,12 +163,12 @@ public class Model {
 		this.scanner = scanner;
 	}
 
-	public boolean getIsFileLoaded() {
-		return isFileLoaded;
+	public boolean getisFilesLoaded() {
+		return isFilesLoaded;
 	}
 
-	public void setIsFileLoaded(boolean isFileLoaded) {
-		this.isFileLoaded = isFileLoaded;
+	public void setisFilesLoaded(boolean isFilesLoaded) {
+		this.isFilesLoaded = isFilesLoaded;
 	}
 
 	public ArrayList<Ville> getListVilles() {
