@@ -23,19 +23,19 @@ public class TestCalendar {
         String formattedDate1 = dtf1.format(dateObj1);
         System.out.println("\nDate du jour : " + formattedDate1);
         
-        SimpleDateFormat dtf3 = new SimpleDateFormat("EEEE MMMM yyyy", Locale.FRANCE);
+        SimpleDateFormat dtf3 = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE);
         String formattedDate3 = dtf3.format(dateObj1);
         System.out.println("\nDate du jour en français : " + formattedDate3);
         
-        SimpleDateFormat dtf4 = new SimpleDateFormat("EEEE MMMM yyyy", new Locale("ru", "RU"));
+        SimpleDateFormat dtf4 = new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("ru", "RU"));
         String formattedDate4 = dtf4.format(dateObj1);
         System.out.println("\nDate du jour en russe : " + formattedDate4);
         
-        SimpleDateFormat dtf5 = new SimpleDateFormat("EEEE MMMM yyyy", Locale.CHINA);
+        SimpleDateFormat dtf5 = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.CHINA);
         String formattedDate5 = dtf5.format(dateObj1);
         System.out.println("\nDate du jour en chinois : " + formattedDate5);
         
-        SimpleDateFormat dtf6 = new SimpleDateFormat("EEEE MMMM yyyy", Locale.GERMANY);
+        SimpleDateFormat dtf6 = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.GERMANY);
         String formattedDate6 = dtf6.format(dateObj1);
         System.out.println("\nDate du jour en allemand : " + formattedDate6);
 	}
