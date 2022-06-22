@@ -40,26 +40,25 @@ public class ComptagePaysParContinent {
 			}
 		}
 		
-		ArrayList<Integer> listNbPays = new ArrayList<>();
+		System.out.println("\nContinents trouvés : \n");
+		ArrayList<Integer>listNbPaysParContinent = new ArrayList<>();
 		for(String continent : listContinents) {
-			listNbPays.add(0);
+			listNbPaysParContinent.add(0);
 			System.out.println(continent.toString());
 		}
 		
 		for (Pays pays : listPays) {
 			for (int i=0; i<listContinents.size(); i++) {
 				if(pays.getContinent().equals(listContinents.get(i))) {
-					int cpt = listNbPays.get(i) + 1;
-					listNbPays.set(i, cpt);
+					int cpt = listNbPaysParContinent.get(i) + 1;
+					listNbPaysPa.set(i, cpt);
 				}
 			}
 		}
 		
 		HashMap<String, Integer> mapContinents = new HashMap<>();
-		//System.out.println("\n\nListe continents et nb pays :\n");
 		for (int i=0; i<listContinents.size(); i++) {
-			//System.out.println("nom : " + listContinents.get(i) + " / nb pays : " + listNbPays.get(i));
-			mapContinents.put(listContinents.get(i), listNbPays.get(i));
+			mapContinents.put(listContinents.get(i), listNbPaysParContinent.get(i));
 		}
 		/*
 		System.out.println("\n\nMap des continents et nb pays :\n");
@@ -72,7 +71,7 @@ public class ComptagePaysParContinent {
 			System.out.println("nom : " + nomContinent + " / nb pays : " + cpt);
 		}*/
 		
-		System.out.println("\n\nMap des continents avec le nb de pays :\n");
+		System.out.println("\nMap des continents avec le nb de pays :\n");
 		Iterator<String> iterKey = mapContinents.keySet().iterator();
 		while(iterKey.hasNext()) {
 			String key = iterKey.next();
