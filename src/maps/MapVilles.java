@@ -2,6 +2,7 @@ package maps;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import tri.Ville;
 
@@ -21,7 +22,7 @@ public class MapVilles {
 		listVille.add(new Ville("Tarbes", 40600));
 		*/
 		
-		HashMap<String, Ville> mapVilles = new HashMap<>();
+		Map<String, Ville> mapVilles = new HashMap<>();
 		mapVilles.put("Nice", new Ville("Nice", 343000));
 		mapVilles.put("Carcassonne", new Ville("Carcassonne", 47800));
 		mapVilles.put("Narbonne", new Ville("Narbonne", 53400));
@@ -39,35 +40,20 @@ public class MapVilles {
 			Ville ville = mapVilles.get(key);
 			System.out.println("key : " + key + " / ville : " + ville.toString());
 		}
-		/*
-		System.out.println("\n\nListe avant suppression :\n");
-		Iterator<Ville> iter0 = mapVilles.values().iterator();
-		while(iter0.hasNext()) {
-			Ville ville = iter0.next();
-			System.out.println(ville.toString());
-		}*/
-		//Iterator<Entry<String, Ville>> iter = mapVilles.entrySet().iterator();
+		
 		Ville villeMin = null;
 		long min = Long.MAX_VALUE;
-		Iterator<Ville> iter = mapVilles.values().iterator();
-		while(iter.hasNext()) {
-			Ville ville = iter.next();
-			if(ville.getNombreHab() < min) {
+		
+		for (String nomVille : mapVilles.keySet()) {
+			Ville ville = mapVilles.get(nomVille);
+			if (ville.getNombreHab() < min) {
 				min = ville.getNombreHab();
 				villeMin = ville;
 			}
 		}
 		
-		
 		System.out.println("\n\nVille min : " + villeMin.toString());
 		mapVilles.remove(villeMin.getNom());
-		/*
-		System.out.println("\n\nListe après suppression :\n");
-		Iterator<Ville> iterVille = mapVilles.values().iterator();
-		while(iterVille.hasNext()) {
-			Ville ville = iterVille.next();
-			System.out.println(ville.toString());
-		}*/
 		
 		System.out.println("\n\nListe après suppression :\n");
 		Iterator<String> iterKey2 = mapVilles.keySet().iterator();

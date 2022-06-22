@@ -24,52 +24,16 @@ public class ComptagePaysParContinent {
 			System.out.println(pays.toString());
 		}
 		
-		// determination de la liste des continents
-		ArrayList<String> listContinents = new ArrayList<>();
-		int compteurContinents = 0;
-		for(Pays pays : listPays) {
-			if (compteurContinents == 0) {
-				listContinents.add(pays.getContinent());
-				compteurContinents++;
-			}
-			else {
-				if(!listContinents.contains(pays.getContinent())) {
-					listContinents.add(pays.getContinent());
-					compteurContinents++;
-				}
-			}
-		}
-		
-		System.out.println("\nContinents trouvés : \n");
-		ArrayList<Integer>listNbPaysParContinent = new ArrayList<>();
-		for(String continent : listContinents) {
-			listNbPaysParContinent.add(0);
-			System.out.println(continent.toString());
-		}
+		HashMap<String, Integer> mapContinents = new HashMap<>();
 		
 		for (Pays pays : listPays) {
-			for (int i=0; i<listContinents.size(); i++) {
-				if(pays.getContinent().equals(listContinents.get(i))) {
-					int cpt = listNbPaysParContinent.get(i) + 1;
-					listNbPaysPa.set(i, cpt);
-				}
+			if(mapContinents.containsKey(pays.getContinent())) {
+				mapContinents.put(pays.getContinent(), mapContinents.get(pays.getContinent()) + 1);
+			}
+			else {
+				mapContinents.put(pays.getContinent(), 1);
 			}
 		}
-		
-		HashMap<String, Integer> mapContinents = new HashMap<>();
-		for (int i=0; i<listContinents.size(); i++) {
-			mapContinents.put(listContinents.get(i), listNbPaysParContinent.get(i));
-		}
-		/*
-		System.out.println("\n\nMap des continents et nb pays :\n");
-		Iterator<Entry<String, Integer>> iter = mapContinents.entrySet().iterator();
-		while(iter.hasNext()) {
-			String maString = (String) iter.next().toString();
-			String[] tabString = maString.split("=");
-			String nomContinent = tabString[0];
-			int cpt = Integer.parseInt(tabString[1]);
-			System.out.println("nom : " + nomContinent + " / nb pays : " + cpt);
-		}*/
 		
 		System.out.println("\nMap des continents avec le nb de pays :\n");
 		Iterator<String> iterKey = mapContinents.keySet().iterator();

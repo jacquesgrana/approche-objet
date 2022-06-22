@@ -38,7 +38,7 @@ public class FusionMap {
 			
 			map3.put(Integer.valueOf(extracted[0]), extracted[1]);
 		}*/
-		
+		/*
 		Iterator<Integer> iter1 = map1.keySet().iterator();
 		while(iter1.hasNext()) {
 			Integer key = iter1.next();
@@ -51,7 +51,10 @@ public class FusionMap {
 			Integer key = iter2.next();
 			String value = map2.get(key);
 			map3.put(key, value);
-		}
+		}*/
+		
+		map3.putAll(map1);
+		map3.putAll(map2);
 		
 		System.out.println("\nListe :\n");
 		Iterator<Integer> iter3 = map3.keySet().iterator();
