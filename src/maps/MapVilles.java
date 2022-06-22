@@ -33,11 +33,19 @@ public class MapVilles {
 		
 		
 		System.out.println("\n\nListe avant suppression :\n");
+		Iterator<String> iterKey = mapVilles.keySet().iterator();
+		while(iterKey.hasNext()) {
+			String key = iterKey.next();
+			Ville ville = mapVilles.get(key);
+			System.out.println("key : " + key + " / ville : " + ville.toString());
+		}
+		/*
+		System.out.println("\n\nListe avant suppression :\n");
 		Iterator<Ville> iter0 = mapVilles.values().iterator();
 		while(iter0.hasNext()) {
 			Ville ville = iter0.next();
 			System.out.println(ville.toString());
-		}
+		}*/
 		//Iterator<Entry<String, Ville>> iter = mapVilles.entrySet().iterator();
 		Ville villeMin = null;
 		long min = Long.MAX_VALUE;
@@ -62,9 +70,9 @@ public class MapVilles {
 		}*/
 		
 		System.out.println("\n\nListe après suppression :\n");
-		Iterator<String> iterKey = mapVilles.keySet().iterator();
-		while(iterKey.hasNext()) {
-			String key = iterKey.next();
+		Iterator<String> iterKey2 = mapVilles.keySet().iterator();
+		while(iterKey2.hasNext()) {
+			String key = iterKey2.next();
 			Ville ville = mapVilles.get(key);
 			System.out.println("key : " + key + " / ville : " + ville.toString());
 		}
