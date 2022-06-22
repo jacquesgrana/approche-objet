@@ -7,7 +7,7 @@ public class TestStringBuilder {
 		
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i=1; i<= 100000; i++) {
-			stringBuilder.append(i).append("/");
+			stringBuilder.append(i);
 		}
 		long fin = System.currentTimeMillis();
 		
@@ -16,7 +16,7 @@ public class TestStringBuilder {
 		String string = "";
 		long debut1 = System.currentTimeMillis();
 		for (int i=1; i<= 100000; i++) {
-			string += i + "/";
+			string += i;
 		}
 		long fin1 = System.currentTimeMillis();
 		
