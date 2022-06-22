@@ -50,14 +50,23 @@ public class MapVilles {
 			}
 		}
 		
+		
 		System.out.println("\n\nVille min : " + villeMin.toString());
 		mapVilles.remove(villeMin.getNom());
-		
+		/*
 		System.out.println("\n\nListe après suppression :\n");
 		Iterator<Ville> iterVille = mapVilles.values().iterator();
 		while(iterVille.hasNext()) {
 			Ville ville = iterVille.next();
 			System.out.println(ville.toString());
+		}*/
+		
+		System.out.println("\n\nListe après suppression :\n");
+		Iterator<String> iterKey = mapVilles.keySet().iterator();
+		while(iterKey.hasNext()) {
+			String key = iterKey.next();
+			Ville ville = mapVilles.get(key);
+			System.out.println("key : " + key + " / ville : " + ville.toString());
 		}
 	}
 

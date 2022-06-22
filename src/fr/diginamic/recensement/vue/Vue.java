@@ -402,7 +402,7 @@ public class Vue {
 	/**
 	 * Méthode qui affiche le message de l'exception IOException. 
 	 * 
-	 * @param e : exception levée de type  IOException
+	 * @param e : exception levée de type IOException
 	 */
 	public void displayIOErrorMessage(IOException e) {
 		System.out.println("\n  Erreur pendant le chargement du fichier .csv : message : " + e.getMessage());
