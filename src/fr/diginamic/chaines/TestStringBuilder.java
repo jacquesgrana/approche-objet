@@ -20,7 +20,7 @@ public class TestStringBuilder {
 		}
 		long fin1 = System.currentTimeMillis();
 		
-		System.out.println("\nTemps avec stringBuilder : " + (fin1 - debut1));
+		System.out.println("\nTemps avec '+' : " + (fin1 - debut1));
 
 	}
 
