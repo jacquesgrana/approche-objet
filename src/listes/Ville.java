@@ -1,25 +1,32 @@
 package listes;
 
-import java.util.Objects;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 
 public class Ville {
 	private String nom;
 	private long nombreHab;
-	
+
 	public Ville(String nom, long nombreHab) {
-		//super();
+		// super();
 		this.nom = nom;
 		this.nombreHab = nombreHab;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof Ville)) {
+	public boolean equals(Object object) {
+		if (!(object instanceof Ville)) {
 			return false;
 		}
-		Ville other = (Ville) obj;
-		return Objects.equals(nom, other.nom) && nombreHab == other.nombreHab;
+		Ville other = (Ville) object;
+		return new EqualsBuilder().append(nom, other.getNom()).isEquals();
 	}
+
+	/*
+	 * @Override public boolean equals(Object obj) { if (!(obj instanceof Ville)) {
+	 * return false; } Ville other = (Ville) obj; return Objects.equals(nom,
+	 * other.nom) && nombreHab == other.nombreHab; }
+	 */
 
 	public Ville clone() {
 		return new Ville(this.nom, this.nombreHab);
