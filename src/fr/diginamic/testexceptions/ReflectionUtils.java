@@ -1,6 +1,9 @@
 package fr.diginamic.testexceptions;
 
 import java.lang.reflect.Field;
+import java.util.Scanner;
+
+import javax.management.InvalidApplicationException;
 
 public class ReflectionUtils {
 
@@ -31,4 +34,6 @@ public class ReflectionUtils {
 		}
 		
 	}
+	
+	
 }

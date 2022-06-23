@@ -402,10 +402,19 @@ public class Vue {
 	/**
 	 * Méthode qui affiche le message de l'exception IOException. 
 	 * 
-	 * @param e : exception levée de type IOException
+	 * @param message : message de l'exception levée
 	 */
-	public void displayIOErrorMessage(IOException e) {
-		System.out.println("\n  Erreur pendant le chargement du fichier .csv : message : " + e.getMessage());
+	public void displayIOErrorMessage(String message) {
+		System.out.println("\n  Erreur pendant le chargement du fichier .csv : " + message);
+	}
+	
+	/**
+	 * Méthode qui affiche le message de l'exception AppException. 
+	 * 
+	 * @param message : message de l'exception levée
+	 */
+	public void displayAppExceptionMessage(String message) {
+		System.out.println("\n  Erreur : " + message);
 	}
 
 	/**
@@ -414,5 +423,7 @@ public class Vue {
 	public void displayCSVNotLoaded() {
 		System.out.println("\n  Fichier .csv non chargé.");
 	}
+
+
 
 }
