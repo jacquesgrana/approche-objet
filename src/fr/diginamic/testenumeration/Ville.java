@@ -39,11 +39,25 @@ public class Ville {
 	public void setContinent(Continent continent) {
 		this.continent = continent;
 	}
+/*
+	@Override
+	public String toString() {
+		return "nom : " + this.nom + " / nombreHab : " + this.nombreHab + " / continent : " + this.continent.toString();
+	}*/
 
 	@Override
 	public String toString() {
-		return "nom : " + this.nom + " / nombreHab : " + this.nombreHab + " / continent : " + this.continent.getLibelle();
+		StringBuilder builder = new StringBuilder();
+		builder.append("nom : ");
+		builder.append(nom);
+		builder.append(" / nombreHab : ");
+		builder.append(nombreHab);
+		builder.append(" / continent : ");
+		builder.append(continent);
+		return builder.toString();
 	}
+	
+	
 	
 	
 

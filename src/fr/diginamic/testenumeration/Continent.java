@@ -9,9 +9,14 @@ public enum Continent {
 	OCEANIE ("Océanie");
 	
 	private String libelle;
-
+	
 	private Continent(String libelle) {
 		this.libelle = libelle;
+	}
+	
+	@Override
+	public String toString() {
+		return new StringBuilder().append(this.libelle).toString();
 	}
 
 	public String getLibelle() {

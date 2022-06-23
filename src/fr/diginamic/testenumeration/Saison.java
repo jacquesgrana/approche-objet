@@ -25,6 +25,10 @@ public enum Saison {
 		}
 		return null;
 	}
+	
+	public String toString() {
+		return new StringBuilder().append(this.nom).append(" / ").append(this.numero).toString();
+	}
 
 	public String getNom() {
 		return nom;

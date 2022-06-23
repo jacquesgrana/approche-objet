@@ -12,11 +12,11 @@ public class TestEnumeration {
 		
 		String nom = "ETE";
 		Saison saison = Saison.valueOf(nom);
-		System.out.println("\nString : " + nom + " / Saison :  " + saison.getNom() + " / " + saison.getNumero());
+		System.out.println("\nString : " + nom + " / Saison : " + saison.toString());
 		
 		String libelle = "Hiver";
 		Saison saisonTrouvee = Saison.getSaisonByNom(libelle);
-		System.out.println("\nLibellé : " + libelle + " / Saison :  " + saisonTrouvee.getNom() + " / " + saisonTrouvee.getNumero());
+		System.out.println("\nLibellé : " + libelle + " / Saison :  " + saisonTrouvee.toString());
 	}
 
 }
