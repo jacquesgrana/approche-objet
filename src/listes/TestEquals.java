@@ -13,6 +13,8 @@ public class TestEquals {
 		System.out.println("Test == 1 : " + (ville1 == ville2) + "\n");
 		System.out.println("Test == 2 : " + (ville1 == ville3) + "\n");
 		
+		Ville ville4 = ville1;
+		System.out.println("Test == 3 : " + (ville1 == ville4) + "\n");
 	}
 
 }
