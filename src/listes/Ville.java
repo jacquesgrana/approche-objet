@@ -1,5 +1,7 @@
 package listes;
 
+import java.util.Objects;
+
 public class Ville {
 	private String nom;
 	private long nombreHab;
@@ -9,7 +11,16 @@ public class Ville {
 		this.nom = nom;
 		this.nombreHab = nombreHab;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Ville)) {
+			return false;
+		}
+		Ville other = (Ville) obj;
+		return Objects.equals(nom, other.nom) && nombreHab == other.nombreHab;
+	}
+
 	public Ville clone() {
 		return new Ville(this.nom, this.nombreHab);
 	}
