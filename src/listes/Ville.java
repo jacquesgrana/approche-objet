@@ -22,6 +22,7 @@ public class Ville {
 		return new EqualsBuilder().append(nom, other.getNom()).isEquals();
 	}
 
+	// ajouter Object.equals a ci dessous
 	/*
 	 * @Override public boolean equals(Object obj) { if (!(obj instanceof Ville)) {
 	 * return false; } Ville other = (Ville) obj; return Objects.equals(nom,
